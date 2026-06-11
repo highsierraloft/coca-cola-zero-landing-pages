@@ -1,8 +1,9 @@
-# Coca-Cola Zero Landing Pages
+# Coca-Cola Zero Landing Page
 
-Two static landing pages generated from the same plain prompt:
+Static GitHub Pages landing page generated from the Antigravity Coke Zero source bundle.
 
-- `coke-zero-55/` - GPT-5.5 extra-high version
-- `coke-zero-54/` - GPT-5.4 extra-high version
+Source imported from `/Users/highsierraloft/Downloads/coke-zero-landing.zip`.
 
-The root `index.html` links to both versions for GitHub Pages.
+The live site is served from `main:/` through GitHub Pages:
+
+https://highsierraloft.github.io/coca-cola-zero-landing-pages/

@@ -1,0 +1,18 @@
+{
+  "name": "coke-zero-landing",
+  "version": "1.0.0",
+  "description": "Premium promotional landing page for Coca-Cola Zero Sugar",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y http-server -p 3000"
+  },
+  "keywords": [
+    "coca-cola",
+    "coke-zero",
+    "landing-page",
+    "web-audio-api",
+    "canvas-particles"
+  ],
+  "author": "",
+  "license": "ISC"
+}
