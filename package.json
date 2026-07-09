@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "test": "bun scripts/validate-pages.mjs",
-    "serve": "bunx --bun http-server . -p 4173 -c-1"
+    "serve": "bunx http-server . -p 4173 -c-1"
   }
 }
