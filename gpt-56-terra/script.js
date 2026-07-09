@@ -2,11 +2,14 @@ const menuButton = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
 
 if (menuButton && nav) {
+  const mobileQuery = window.matchMedia('(max-width: 760px)');
+
   const setMenuState = (open) => {
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.querySelector('.sr-only').textContent = open ? 'Close navigation' : 'Open navigation';
-    nav.classList.toggle('is-open', open);
-    document.body.classList.toggle('menu-open', open);
+    const isOpen = open && mobileQuery.matches;
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.querySelector('.sr-only').textContent = isOpen ? 'Close navigation' : 'Open navigation';
+    nav.classList.toggle('is-open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
   };
 
   menuButton.addEventListener('click', () => {
@@ -21,7 +24,7 @@ if (menuButton && nav) {
   });
 
   document.addEventListener('keydown', (event) => {
-    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    const isOpen = mobileQuery.matches && menuButton.getAttribute('aria-expanded') === 'true';
     if (!isOpen) return;
 
     if (event.key === 'Escape') {
@@ -44,18 +47,46 @@ if (menuButton && nav) {
       }
     }
   });
+
+  const resetMenuForDesktop = (event) => {
+    if (event.matches) return;
+
+    const toggleHadFocus = document.activeElement === menuButton;
+    setMenuState(false);
+
+    if (toggleHadFocus) {
+      window.requestAnimationFrame(() => nav.querySelector('a[href]')?.focus({ preventScroll: true }));
+    }
+  };
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', resetMenuForDesktop);
+  } else {
+    mobileQuery.addListener(resetMenuForDesktop);
+  }
 }
 
-const toast = document.querySelector('[data-toast-message]');
-let toastTimer;
+const flavourButtons = document.querySelectorAll('[data-flavour-select]');
+const flavourSelection = document.querySelector('[data-flavour-selection]');
 
-document.querySelectorAll('[data-toast]').forEach((button) => {
+flavourButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (!toast) return;
-    toast.textContent = button.dataset.toast;
-    toast.classList.add('is-visible');
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 3200);
+    const selectedFlavour = button.dataset.flavour;
+
+    flavourButtons.forEach((flavourButton) => {
+      const selected = flavourButton === button;
+      const flavourName = flavourButton.dataset.flavour;
+      flavourButton.setAttribute('aria-pressed', String(selected));
+      flavourButton.closest('.flavour-card')?.classList.toggle('is-selected', selected);
+      flavourButton.querySelector('[data-flavour-label]').textContent = selected
+        ? `${flavourName} selected`
+        : `Select ${flavourName}`;
+      flavourButton.querySelector('[aria-hidden="true"]').textContent = selected ? '✓' : '↗';
+    });
+
+    if (flavourSelection) {
+      flavourSelection.textContent = `${selectedFlavour} selected.`;
+    }
   });
 });
 
@@ -66,8 +97,12 @@ if (locationForm && formMessage) {
   locationForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const location = new FormData(locationForm).get('location')?.trim();
-    formMessage.textContent = location
-      ? `Looking for Coca-Cola Zero Sugar near ${location}.`
-      : 'Enter a city or postcode to start your search.';
+    if (!location) {
+      formMessage.textContent = 'Enter a city or postcode to search Google Maps.';
+      return;
+    }
+
+    const searchQuery = `Coca-Cola Zero Sugar near ${location}`;
+    window.location.assign(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`);
   });
 }

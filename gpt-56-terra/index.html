@@ -169,23 +169,24 @@
           <p>Same unmistakable Coca-Cola character. Find the version that fits your moment.</p>
         </div>
 
-        <div class="flavour-track">
+        <div class="flavour-track" role="group" aria-label="Choose a Coca-Cola Zero Sugar flavour">
           <article class="flavour-card flavour-original">
             <span class="flavour-number">01</span>
             <div class="flavour-can-wrap"><div class="can flavour-can"><div class="can-top"><span></span></div><div class="can-glint"></div><div class="can-label"><span class="can-script">Coca-Cola</span><span class="can-zero">ZERO SUGAR</span><span class="can-note">ORIGINAL TASTE</span></div><div class="can-bottom"></div></div></div>
-            <div class="flavour-text"><h3>Original Taste</h3><p>The classic. The one you know.</p><button type="button" data-toast="Original Taste is always a good idea.">Make it mine <span aria-hidden="true">↗</span></button></div>
+            <div class="flavour-text"><h3>Original Taste</h3><p>The classic. The one you know.</p><button type="button" data-flavour-select data-flavour="Original Taste" aria-pressed="false"><span data-flavour-label>Select Original Taste</span> <span aria-hidden="true">↗</span></button></div>
           </article>
           <article class="flavour-card flavour-cherry">
             <span class="flavour-number">02</span>
             <div class="flavour-can-wrap"><div class="can flavour-can"><div class="can-top"><span></span></div><div class="can-glint"></div><div class="can-label"><span class="can-script">Coca-Cola</span><span class="can-zero">ZERO SUGAR</span><span class="can-note">CHERRY</span></div><div class="can-bottom"></div></div></div>
-            <div class="flavour-text"><h3>Cherry</h3><p>A deep, dark-fruit twist.</p><button type="button" data-toast="Cherry has entered the chat.">Make it mine <span aria-hidden="true">↗</span></button></div>
+            <div class="flavour-text"><h3>Cherry</h3><p>A deep, dark-fruit twist.</p><button type="button" data-flavour-select data-flavour="Cherry" aria-pressed="false"><span data-flavour-label>Select Cherry</span> <span aria-hidden="true">↗</span></button></div>
           </article>
           <article class="flavour-card flavour-vanilla">
             <span class="flavour-number">03</span>
             <div class="flavour-can-wrap"><div class="can flavour-can"><div class="can-top"><span></span></div><div class="can-glint"></div><div class="can-label"><span class="can-script">Coca-Cola</span><span class="can-zero">ZERO SUGAR</span><span class="can-note">VANILLA</span></div><div class="can-bottom"></div></div></div>
-            <div class="flavour-text"><h3>Vanilla</h3><p>Round, smooth, unexpected.</p><button type="button" data-toast="Vanilla makes any moment a little softer.">Make it mine <span aria-hidden="true">↗</span></button></div>
+            <div class="flavour-text"><h3>Vanilla</h3><p>Round, smooth, unexpected.</p><button type="button" data-flavour-select data-flavour="Vanilla" aria-pressed="false"><span data-flavour-label>Select Vanilla</span> <span aria-hidden="true">↗</span></button></div>
           </article>
         </div>
+        <p class="flavour-selection" data-flavour-selection role="status">Choose a flavour to highlight it.</p>
       </section>
 
       <section class="find-zero section-shell" id="find-zero" aria-labelledby="find-title">
@@ -197,10 +198,11 @@
           <h2 id="find-title">FIND YOUR<br /><em>ZERO.</em></h2>
           <p>Pop into your nearest store, open the fridge, and make a moment of it.</p>
           <form class="location-form" data-location-form>
-            <label class="sr-only" for="location">Enter your city or postcode</label>
-            <input id="location" name="location" type="text" placeholder="Enter your city or postcode" autocomplete="postal-code" />
-            <button class="button button-dark" type="submit">Find nearby <span aria-hidden="true">↗</span></button>
+            <label class="sr-only" for="location">Enter a city or postcode to search Google Maps</label>
+            <input id="location" name="location" type="text" placeholder="Enter a city or postcode" autocomplete="postal-code" />
+            <button class="button button-dark" type="submit">Search Google Maps <span aria-hidden="true">↗</span></button>
           </form>
+          <p class="form-disclosure">Opens a Google Maps search. Your entry stays in this browser until you submit it to Google.</p>
           <p class="form-note" data-form-message aria-live="polite"></p>
         </div>
         <div class="find-can can" aria-hidden="true"><div class="can-top"><span></span></div><div class="can-glint"></div><div class="can-label"><span class="can-script">Coca-Cola</span><span class="can-zero">ZERO SUGAR</span><span class="can-note">ORIGINAL TASTE</span></div><div class="can-bottom"></div></div>
@@ -214,12 +216,10 @@
         <a href="#top" class="back-top">Back to top <span aria-hidden="true">↑</span></a>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 The Coca-Cola Company. Coca-Cola and Coke are registered trademarks.</p>
-        <div><a href="#top">Privacy</a><a href="#top">Terms</a><a href="#top">Contact</a></div>
+        <p>Unofficial visual concept created for design benchmarking. It is not affiliated with, endorsed by, or sponsored by The Coca-Cola Company.</p>
       </div>
     </footer>
 
-    <div class="toast" role="status" aria-live="polite" data-toast-message></div>
     <script src="./script.js"></script>
   </body>
 </html>
