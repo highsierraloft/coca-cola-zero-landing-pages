@@ -16,6 +16,7 @@
 
 - `prompts/gpt-56-benchmark.md`: canonical model prompt and isolation constraints shared byte-for-byte by all three GPT-5.6 runs.
 - `scripts/validate-pages.mjs`: dependency-free structural and relative-asset validation for the gallery and model routes.
+- `scripts/serve.mjs`: dependency-free, loopback-only static preview server that blocks dotfiles, directory listings, and path traversal.
 - `index.html`: root comparison gallery linking all six advertisements.
 - `gallery.css`: root gallery styling; deliberately separate from generated page styling.
 - `package.json`: root Bun scripts for structural validation and local serving.
@@ -252,11 +253,10 @@ Expected: empty `gpt-56-sol/` directory.
 - [ ] **Step 2: Invoke Sol with the shared prompt and explicit Ultra effort**
 
 ```bash
-codex exec \
+codex -a never exec \
   -C "$PWD/gpt-56-sol" \
   --skip-git-repo-check \
   -s workspace-write \
-  -a never \
   -m gpt-5.6-sol \
   -c 'model_reasoning_effort="ultra"' \
   - < "$PWD/prompts/gpt-56-benchmark.md"
@@ -299,11 +299,10 @@ Expected: empty `gpt-56-terra/` directory.
 - [ ] **Step 2: Invoke Terra with the identical prompt and explicit Ultra effort**
 
 ```bash
-codex exec \
+codex -a never exec \
   -C "$PWD/gpt-56-terra" \
   --skip-git-repo-check \
   -s workspace-write \
-  -a never \
   -m gpt-5.6-terra \
   -c 'model_reasoning_effort="ultra"' \
   - < "$PWD/prompts/gpt-56-benchmark.md"
@@ -346,11 +345,10 @@ Expected: empty `gpt-56-luna/` directory.
 - [ ] **Step 2: Invoke Luna with the identical prompt and its maximum supported effort**
 
 ```bash
-codex exec \
+codex -a never exec \
   -C "$PWD/gpt-56-luna" \
   --skip-git-repo-check \
   -s workspace-write \
-  -a never \
   -m gpt-5.6-luna \
   -c 'model_reasoning_effort="max"' \
   - < "$PWD/prompts/gpt-56-benchmark.md"
@@ -650,6 +648,8 @@ footer a { color: var(--ink); }
 
 - [ ] **Step 3: Add root Bun commands**
 
+Implementation note: The original forced-Bun `http-server` command was replaced during review because it crashed and exposed `.git`; the final implementation uses the dependency-free `scripts/serve.mjs` preview server.
+
 ```json
 {
   "name": "coca-cola-zero-model-benchmark",
@@ -657,7 +657,7 @@ footer a { color: var(--ink); }
   "private": true,
   "scripts": {
     "test": "bun scripts/validate-pages.mjs",
-    "serve": "bunx --bun http-server . -p 4173 -c-1"
+    "serve": "bun scripts/serve.mjs"
   }
 }
 ```
