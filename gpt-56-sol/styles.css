@@ -39,6 +39,7 @@
 @layer base {
   :root {
     --red: #f3121d;
+    --red-on-dark: #f71823;
     --red-dark: #c80812;
     --ink: #070707;
     --graphite: #171717;
@@ -1105,6 +1106,10 @@
 
   .ritual__copy .eyebrow {
     margin-top: 5rem;
+  }
+
+  .ritual__copy .eyebrow--red {
+    color: var(--red-on-dark);
   }
 
   .ritual__copy .display-title {
