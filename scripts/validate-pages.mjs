@@ -1,4 +1,11 @@
-import { access, readFile, realpath, stat } from 'node:fs/promises';
+import {
+  access,
+  lstat,
+  open,
+  readFile,
+  realpath,
+  stat,
+} from 'node:fs/promises';
 import {
   dirname,
   extname,
@@ -10,6 +17,7 @@ import {
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const canonicalRepoRoot = await realpath(repoRoot);
 
 const routes = [
   { id: 'root', directory: '.', generated: false },
@@ -92,6 +100,48 @@ async function isRegularFile(pathname) {
   }
 }
 
+async function isReadableRegularFile(pathname) {
+  if (!(await isRegularFile(pathname))) {
+    return false;
+  }
+
+  try {
+    const file = await open(pathname, 'r');
+    await file.close();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function pathEntry(pathname) {
+  try {
+    return await lstat(pathname);
+  } catch {
+    return null;
+  }
+}
+
+function addFileReferenceFailure(
+  intent,
+  rawReference,
+  sourcePath,
+  routeId,
+  failures,
+) {
+  let label = 'resource href';
+  if (intent === 'src') {
+    label = 'src reference';
+  } else if (intent === 'css-url') {
+    label = 'CSS url() reference';
+  }
+  const requirement =
+    intent === 'resource-href' ? 'a readable regular file' : 'a regular file';
+  failures.push(
+    `${routeId}: ${displayPath(sourcePath)} ${label} must resolve to ${requirement}: ${rawReference}`,
+  );
+}
+
 async function checkLocalReference(
   rawReference,
   sourcePath,
@@ -121,18 +171,26 @@ async function checkLocalReference(
     return null;
   }
 
-  if (!(await exists(targetPath))) {
-    failures.push(
-      `${routeId}: ${displayPath(sourcePath)} references missing local file ${rawReference}`,
-    );
-    return null;
-  }
-
+  const targetEntry = await pathEntry(targetPath);
   const realTargetPath = await resolvedPath(targetPath);
   if (realTargetPath === null) {
-    failures.push(
-      `${routeId}: ${displayPath(sourcePath)} references missing local file ${rawReference}`,
-    );
+    if (
+      intent !== 'navigation-href' &&
+      targetEntry !== null &&
+      targetEntry.isFile()
+    ) {
+      addFileReferenceFailure(
+        intent,
+        rawReference,
+        sourcePath,
+        routeId,
+        failures,
+      );
+    } else {
+      failures.push(
+        `${routeId}: ${displayPath(sourcePath)} references missing local file ${rawReference}`,
+      );
+    }
     return null;
   }
 
@@ -143,10 +201,17 @@ async function checkLocalReference(
     return null;
   }
 
-  if (intent !== 'href' && !(await isRegularFile(realTargetPath))) {
-    const label = intent === 'src' ? 'src reference' : 'CSS url() reference';
-    failures.push(
-      `${routeId}: ${displayPath(sourcePath)} ${label} must resolve to a regular file: ${rawReference}`,
+  const validFile =
+    intent === 'resource-href'
+      ? await isReadableRegularFile(realTargetPath)
+      : await isRegularFile(realTargetPath);
+  if (intent !== 'navigation-href' && !validFile) {
+    addFileReferenceFailure(
+      intent,
+      rawReference,
+      sourcePath,
+      routeId,
+      failures,
     );
     return null;
   }
@@ -179,13 +244,38 @@ async function checkCss(
   }
 }
 
-const structuralIgnoredContentElements = new Set([
+const browserTextElements = new Set([
   'script',
   'style',
+  'textarea',
+  'title',
+  'iframe',
+  'noembed',
+  'xmp',
+]);
+const structuralIgnoredContentElements = new Set([
+  ...browserTextElements,
   'template',
   'noscript',
 ]);
-const referenceIgnoredContentElements = new Set(['script', 'style']);
+const referenceIgnoredContentElements = browserTextElements;
+const directoryNavigationElements = new Set(['a', 'area']);
+const voidElements = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'param',
+  'source',
+  'track',
+  'wbr',
+]);
 
 function readMarkupToken(markup, start) {
   if (markup.startsWith('<!--', start)) {
@@ -223,14 +313,15 @@ function readMarkupToken(markup, start) {
       return { type: 'other', raw, start, end: index + 1 };
     }
 
+    const name = tag[2].toLowerCase();
     return {
       type: 'tag',
       raw,
       start,
       end: index + 1,
       closing: tag[1] === '/',
-      name: tag[2].toLowerCase(),
-      selfClosing: /\/\s*>$/.test(raw),
+      name,
+      selfClosing: voidElements.has(name),
     };
   }
 
@@ -240,6 +331,7 @@ function readMarkupToken(markup, start) {
 function sanitizeMarkup(html, ignoredContentElements) {
   const output = [];
   const styleBlocks = [];
+  const titleBlocks = [];
   let cursor = 0;
   let ignoredElement = null;
   let ignoredDepth = 0;
@@ -252,6 +344,8 @@ function sanitizeMarkup(html, ignoredContentElements) {
         output.push(html.slice(cursor));
       } else if (ignoredElement === 'style') {
         styleBlocks.push(html.slice(ignoredContentStart));
+      } else if (ignoredElement === 'title') {
+        titleBlocks.push(html.slice(ignoredContentStart));
       }
       break;
     }
@@ -293,6 +387,8 @@ function sanitizeMarkup(html, ignoredContentElements) {
         if (ignoredDepth === 0) {
           if (ignoredElement === 'style') {
             styleBlocks.push(html.slice(ignoredContentStart, token.start));
+          } else if (ignoredElement === 'title') {
+            titleBlocks.push(html.slice(ignoredContentStart, token.start));
           }
           output.push(token.raw);
           ignoredElement = null;
@@ -308,7 +404,7 @@ function sanitizeMarkup(html, ignoredContentElements) {
     cursor = token.end;
   }
 
-  return { markup: output.join(''), styleBlocks };
+  return { markup: output.join(''), styleBlocks, titleBlocks };
 }
 
 function markupTags(markup) {
@@ -417,39 +513,45 @@ function htmlReferences(tags) {
   return references;
 }
 
-function hasNonEmptyTitle(markup, tags) {
-  for (let index = 0; index < tags.length; index += 1) {
-    const openingTag = tags[index];
-    if (openingTag.closing || openingTag.name !== 'title') {
-      continue;
-    }
-
-    const closingTag = tags
-      .slice(index + 1)
-      .find((tag) => tag.closing && tag.name === 'title');
-    if (
-      closingTag &&
-      markup.slice(openingTag.end, closingTag.start).trim() !== ''
-    ) {
-      return true;
-    }
-  }
-
-  return false;
+function hasNonEmptyTitle(titleBlocks) {
+  return titleBlocks.some((title) => title.trim() !== '');
 }
 
 async function validateRoute(route, failures) {
   const routeDirectory = resolve(repoRoot, route.directory);
   const indexPath = resolve(routeDirectory, 'index.html');
+  const routeEntry = await pathEntry(routeDirectory);
+
+  if (routeEntry === null) {
+    failures.push(`${route.id}: missing index.html`);
+    return null;
+  }
+
+  if (route.id !== 'root' && routeEntry.isSymbolicLink()) {
+    failures.push(`${route.id}: route directory must not be a symlink`);
+    return null;
+  }
+
+  const realRouteDirectory = await resolvedPath(routeDirectory);
+  const expectedRouteDirectory = resolve(canonicalRepoRoot, route.directory);
+  if (
+    realRouteDirectory === null ||
+    !isWithinDirectory(canonicalRepoRoot, realRouteDirectory) ||
+    realRouteDirectory !== expectedRouteDirectory
+  ) {
+    failures.push(
+      `${route.id}: route directory resolves outside its expected location`,
+    );
+    return null;
+  }
 
   if (!(await exists(indexPath))) {
     failures.push(`${route.id}: missing index.html`);
     return null;
   }
 
-  const realRouteDirectory = await resolvedPath(routeDirectory);
   const realIndexPath = await resolvedPath(indexPath);
-  if (realRouteDirectory === null || realIndexPath === null) {
+  if (realIndexPath === null) {
     failures.push(`${route.id}: could not resolve index.html`);
     return null;
   }
@@ -472,7 +574,7 @@ async function validateRoute(route, failures) {
     return null;
   }
 
-  const { markup: structuralMarkup } = sanitizeMarkup(
+  const { markup: structuralMarkup, titleBlocks } = sanitizeMarkup(
     html,
     structuralIgnoredContentElements,
   );
@@ -485,7 +587,7 @@ async function validateRoute(route, failures) {
   const referenceTags = markupTags(referenceMarkup);
   const referenceOpeningTags = referenceTags.filter((tag) => !tag.closing);
 
-  if (!hasNonEmptyTitle(structuralMarkup, structuralTags)) {
+  if (!hasNonEmptyTitle(titleBlocks)) {
     failures.push(`${route.id}: index.html must contain a non-empty <title>`);
   }
 
@@ -513,7 +615,15 @@ async function validateRoute(route, failures) {
 
   const checkedStylesheets = new Set();
 
-  for (const { attribute, reference } of htmlReferences(referenceTags)) {
+  for (const { element, attribute, reference } of htmlReferences(
+    referenceTags,
+  )) {
+    const intent =
+      attribute === 'src'
+        ? 'src'
+        : directoryNavigationElements.has(element)
+          ? 'navigation-href'
+          : 'resource-href';
     const target = await checkLocalReference(
       reference,
       indexPath,
@@ -521,7 +631,7 @@ async function validateRoute(route, failures) {
       realRouteDirectory,
       route.id,
       failures,
-      attribute,
+      intent,
     );
 
     if (
