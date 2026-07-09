@@ -54,8 +54,9 @@ button {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--red-bright);
-  outline-offset: 5px;
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px var(--black);
 }
 
 .sr-only {
@@ -770,7 +771,7 @@ h2 em {
 
 .section-kicker {
   margin-bottom: 27px;
-  color: var(--red);
+  color: var(--red-deep);
 }
 
 .section-kicker-light {
@@ -801,9 +802,9 @@ h2 span {
   width: 91px;
   height: 91px;
   padding: 15px;
-  border: 1px solid var(--red);
+  border: 1px solid var(--red-deep);
   border-radius: 50%;
-  color: var(--red);
+  color: var(--red-deep);
   font-size: 10px;
   font-weight: 800;
   line-height: 1.25;
@@ -980,9 +981,16 @@ h2 span {
 .products-heading > p {
   max-width: 285px;
   margin-bottom: 7px;
-  color: rgba(244, 240, 233, 0.55);
   font-size: 15px;
   line-height: 1.65;
+}
+
+.moments-heading-copy {
+  color: rgba(244, 240, 233, 0.72);
+}
+
+.products-heading > p {
+  color: #4b4844;
 }
 
 .moment-grid {
@@ -1167,7 +1175,7 @@ h2 span {
   height: 92px;
   border: 1px solid var(--red);
   border-radius: 50%;
-  color: var(--red);
+  color: var(--red-deep);
   font-size: 10px;
   font-weight: 800;
   line-height: 1.1;
@@ -1199,7 +1207,7 @@ h2 span {
 }
 
 .ingredient-row > span {
-  color: var(--red);
+  color: var(--red-deep);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -1211,7 +1219,7 @@ h2 span {
 }
 
 .ingredient-row small {
-  color: #8a867f;
+  color: #5f5b55;
   font-size: 11px;
 }
 
@@ -1470,7 +1478,7 @@ h2 span {
 .product-number {
   display: block;
   margin-bottom: 9px;
-  color: var(--red);
+  color: var(--red-deep);
   font-size: 10px;
 }
 
@@ -1482,7 +1490,7 @@ h2 span {
 
 .product-card p {
   margin-bottom: 0;
-  color: #88837c;
+  color: #5c5852;
   font-size: 12px;
 }
 
@@ -1504,14 +1512,14 @@ h2 span {
 
 .product-select:hover,
 .product-card.is-selected .product-select {
-  color: var(--red);
-  border-color: var(--red);
+  color: var(--red-deep);
+  border-color: var(--red-deep);
 }
 
 .selection-note {
   min-height: 20px;
   margin: 23px 0 0;
-  color: var(--red);
+  color: var(--red-deep);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1525,7 +1533,7 @@ h2 span {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--red);
+  background: var(--red-deep);
 }
 
 .final-cta::before {
@@ -1578,7 +1586,7 @@ h2 span {
 .final-cta p:not(.section-kicker) {
   max-width: 300px;
   margin-bottom: 35px;
-  color: rgba(255, 255, 255, 0.72);
+  color: #fff;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -1619,7 +1627,7 @@ h2 span {
 }
 
 .site-footer {
-  color: rgba(244, 240, 233, 0.55);
+  color: #c5c0b7;
   background: var(--black);
 }
 
@@ -1651,11 +1659,15 @@ h2 span {
   text-transform: uppercase;
 }
 
+.footer-links a {
+  opacity: 1;
+}
+
 .footer-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 21px 0 25px;
-  color: rgba(244, 240, 233, 0.35);
+  color: #8f8b84;
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1707,7 +1719,7 @@ h2 span {
   .menu-toggle span:last-child { width: 15px; }
   .menu-toggle[aria-expanded="true"] span:nth-of-type(2) { transform: translateY(3.5px) rotate(45deg); }
   .menu-toggle[aria-expanded="true"] span:nth-of-type(3) { width: 23px; transform: translateY(-3.5px) rotate(-45deg); }
-  .site-nav { position: fixed; z-index: 1; top: 0; right: 0; display: flex; width: 100%; height: 100vh; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; margin: 0; padding: 80px 20px 30px; background: var(--black); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity 250ms ease, transform 250ms ease; }
+  .site-nav { position: fixed; z-index: 1; top: 0; right: 0; display: flex; width: 100%; height: 100vh; height: 100dvh; max-height: 100dvh; min-height: 0; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 24px; margin: 0; padding: 96px 20px 40px; overflow-y: auto; overscroll-behavior: contain; background: var(--black); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity 250ms ease, transform 250ms ease; }
   .site-nav.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .site-nav a { font-family: var(--font-display); font-size: 47px; line-height: 0.92; letter-spacing: -0.04em; opacity: 1; }
   .site-nav a::after { bottom: -5px; }
