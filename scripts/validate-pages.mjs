@@ -1,4 +1,4 @@
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, realpath, stat } from 'node:fs/promises';
 import {
   dirname,
   extname,
@@ -66,12 +66,40 @@ function displayPath(pathname) {
   return relative(repoRoot, pathname) || '.';
 }
 
+function isWithinDirectory(directory, pathname) {
+  const relativePath = relative(directory, pathname);
+  return (
+    relativePath === '' ||
+    (relativePath !== '..' &&
+      !relativePath.startsWith(`..${sep}`) &&
+      !isAbsolute(relativePath))
+  );
+}
+
+async function resolvedPath(pathname) {
+  try {
+    return await realpath(pathname);
+  } catch {
+    return null;
+  }
+}
+
+async function isRegularFile(pathname) {
+  try {
+    return (await stat(pathname)).isFile();
+  } catch {
+    return false;
+  }
+}
+
 async function checkLocalReference(
   rawReference,
   sourcePath,
   routeDirectory,
+  realRouteDirectory,
   routeId,
   failures,
+  intent,
 ) {
   const reference = cleanReference(rawReference);
   if (reference === null) {
@@ -86,13 +114,7 @@ async function checkLocalReference(
   }
 
   const targetPath = resolve(dirname(sourcePath), reference);
-  const routeRelativePath = relative(routeDirectory, targetPath);
-
-  if (
-    routeRelativePath === '..' ||
-    routeRelativePath.startsWith(`..${sep}`) ||
-    isAbsolute(routeRelativePath)
-  ) {
+  if (!isWithinDirectory(routeDirectory, targetPath)) {
     failures.push(
       `${routeId}: ${displayPath(sourcePath)} has reference escaping its route directory: ${rawReference}`,
     );
@@ -106,13 +128,37 @@ async function checkLocalReference(
     return null;
   }
 
-  return targetPath;
+  const realTargetPath = await resolvedPath(targetPath);
+  if (realTargetPath === null) {
+    failures.push(
+      `${routeId}: ${displayPath(sourcePath)} references missing local file ${rawReference}`,
+    );
+    return null;
+  }
+
+  if (!isWithinDirectory(realRouteDirectory, realTargetPath)) {
+    failures.push(
+      `${routeId}: ${displayPath(sourcePath)} reference resolves outside its route directory: ${rawReference}`,
+    );
+    return null;
+  }
+
+  if (intent !== 'href' && !(await isRegularFile(realTargetPath))) {
+    const label = intent === 'src' ? 'src reference' : 'CSS url() reference';
+    failures.push(
+      `${routeId}: ${displayPath(sourcePath)} ${label} must resolve to a regular file: ${rawReference}`,
+    );
+    return null;
+  }
+
+  return { path: targetPath, realPath: realTargetPath };
 }
 
 async function checkCss(
   css,
   sourcePath,
   routeDirectory,
+  realRouteDirectory,
   routeId,
   failures,
 ) {
@@ -125,25 +171,270 @@ async function checkCss(
       reference.trim(),
       sourcePath,
       routeDirectory,
+      realRouteDirectory,
       routeId,
       failures,
+      'css-url',
     );
   }
 }
 
-function htmlReferences(html, attributeFilter = null) {
-  const references = [];
-  const htmlWithoutComments = html.replace(/<!--[\s\S]*?-->/g, '');
-  const attributePattern =
-    /(?<![\w:-])(src|href)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+const ignoredContentElements = new Set([
+  'script',
+  'style',
+  'template',
+  'noscript',
+]);
 
-  for (const match of htmlWithoutComments.matchAll(attributePattern)) {
-    if (attributeFilter === null || match[1].toLowerCase() === attributeFilter) {
-      references.push(match[2] ?? match[3] ?? match[4] ?? '');
+function readMarkupToken(markup, start) {
+  if (markup.startsWith('<!--', start)) {
+    const commentEnd = markup.indexOf('-->', start + 4);
+    return {
+      type: 'comment',
+      start,
+      end: commentEnd === -1 ? markup.length : commentEnd + 3,
+    };
+  }
+
+  let quote = null;
+  for (let index = start + 1; index < markup.length; index += 1) {
+    const character = markup[index];
+
+    if (quote !== null) {
+      if (character === quote) {
+        quote = null;
+      }
+      continue;
+    }
+
+    if (character === '"' || character === "'") {
+      quote = character;
+      continue;
+    }
+
+    if (character !== '>') {
+      continue;
+    }
+
+    const raw = markup.slice(start, index + 1);
+    const tag = raw.match(/^<\s*(\/?)\s*([a-z][\w:-]*)\b/i);
+    if (!tag) {
+      return { type: 'other', raw, start, end: index + 1 };
+    }
+
+    return {
+      type: 'tag',
+      raw,
+      start,
+      end: index + 1,
+      closing: tag[1] === '/',
+      name: tag[2].toLowerCase(),
+      selfClosing: /\/\s*>$/.test(raw),
+    };
+  }
+
+  return null;
+}
+
+function sanitizeMarkup(html) {
+  const output = [];
+  const styleBlocks = [];
+  let cursor = 0;
+  let ignoredElement = null;
+  let ignoredDepth = 0;
+  let ignoredContentStart = 0;
+
+  while (cursor < html.length) {
+    const tokenStart = html.indexOf('<', cursor);
+    if (tokenStart === -1) {
+      if (ignoredElement === null) {
+        output.push(html.slice(cursor));
+      } else if (ignoredElement === 'style') {
+        styleBlocks.push(html.slice(ignoredContentStart));
+      }
+      break;
+    }
+
+    if (ignoredElement === null) {
+      output.push(html.slice(cursor, tokenStart));
+    }
+
+    const token = readMarkupToken(html, tokenStart);
+    if (token === null) {
+      if (ignoredElement === null) {
+        output.push('<');
+      }
+      cursor = tokenStart + 1;
+      continue;
+    }
+
+    if (token.type === 'comment') {
+      cursor = token.end;
+      continue;
+    }
+
+    if (ignoredElement === null) {
+      output.push(token.raw);
+
+      if (
+        token.type === 'tag' &&
+        !token.closing &&
+        !token.selfClosing &&
+        ignoredContentElements.has(token.name)
+      ) {
+        ignoredElement = token.name;
+        ignoredDepth = 1;
+        ignoredContentStart = token.end;
+      }
+    } else if (token.type === 'tag' && token.name === ignoredElement) {
+      if (token.closing) {
+        ignoredDepth -= 1;
+        if (ignoredDepth === 0) {
+          if (ignoredElement === 'style') {
+            styleBlocks.push(html.slice(ignoredContentStart, token.start));
+          }
+          output.push(token.raw);
+          ignoredElement = null;
+        }
+      } else if (
+        !token.selfClosing &&
+        (ignoredElement === 'template' || ignoredElement === 'noscript')
+      ) {
+        ignoredDepth += 1;
+      }
+    }
+
+    cursor = token.end;
+  }
+
+  return { markup: output.join(''), styleBlocks };
+}
+
+function markupTags(markup) {
+  const tags = [];
+  let cursor = 0;
+
+  while (cursor < markup.length) {
+    const tokenStart = markup.indexOf('<', cursor);
+    if (tokenStart === -1) {
+      break;
+    }
+
+    const token = readMarkupToken(markup, tokenStart);
+    if (token === null) {
+      cursor = tokenStart + 1;
+      continue;
+    }
+
+    if (token.type === 'tag') {
+      tags.push(token);
+    }
+    cursor = token.end;
+  }
+
+  return tags;
+}
+
+function tagAttributes(tag) {
+  const attributes = [];
+  const tagName = tag.raw.match(/^<\s*\/?\s*[a-z][\w:-]*/i);
+  let cursor = tagName ? tagName[0].length : 0;
+
+  while (cursor < tag.raw.length) {
+    while (/\s/.test(tag.raw[cursor] ?? '')) {
+      cursor += 1;
+    }
+
+    if (tag.raw[cursor] === '>' || tag.raw[cursor] === '/') {
+      break;
+    }
+
+    const nameStart = cursor;
+    while (!/[\s=/>]/.test(tag.raw[cursor] ?? '>')) {
+      cursor += 1;
+    }
+    const name = tag.raw.slice(nameStart, cursor).toLowerCase();
+
+    while (/\s/.test(tag.raw[cursor] ?? '')) {
+      cursor += 1;
+    }
+
+    let value = '';
+    if (tag.raw[cursor] === '=') {
+      cursor += 1;
+      while (/\s/.test(tag.raw[cursor] ?? '')) {
+        cursor += 1;
+      }
+
+      const quote = tag.raw[cursor];
+      if (quote === '"' || quote === "'") {
+        cursor += 1;
+        const valueStart = cursor;
+        while (cursor < tag.raw.length && tag.raw[cursor] !== quote) {
+          cursor += 1;
+        }
+        value = tag.raw.slice(valueStart, cursor);
+        if (tag.raw[cursor] === quote) {
+          cursor += 1;
+        }
+      } else {
+        const valueStart = cursor;
+        while (!/[\s>]/.test(tag.raw[cursor] ?? '>')) {
+          cursor += 1;
+        }
+        value = tag.raw.slice(valueStart, cursor);
+      }
+    }
+
+    if (name !== '') {
+      attributes.push({ name, value });
+    }
+  }
+
+  return attributes;
+}
+
+function htmlReferences(tags) {
+  const references = [];
+
+  for (const tag of tags) {
+    if (tag.closing) {
+      continue;
+    }
+
+    for (const attribute of tagAttributes(tag)) {
+      if (attribute.name === 'src' || attribute.name === 'href') {
+        references.push({
+          element: tag.name,
+          attribute: attribute.name,
+          reference: attribute.value,
+        });
+      }
     }
   }
 
   return references;
+}
+
+function hasNonEmptyTitle(markup, tags) {
+  for (let index = 0; index < tags.length; index += 1) {
+    const openingTag = tags[index];
+    if (openingTag.closing || openingTag.name !== 'title') {
+      continue;
+    }
+
+    const closingTag = tags
+      .slice(index + 1)
+      .find((tag) => tag.closing && tag.name === 'title');
+    if (
+      closingTag &&
+      markup.slice(openingTag.end, closingTag.start).trim() !== ''
+    ) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 async function validateRoute(route, failures) {
@@ -155,22 +446,45 @@ async function validateRoute(route, failures) {
     return null;
   }
 
-  const html = await readFile(indexPath, 'utf8');
-  const htmlWithoutComments = html.replace(/<!--[\s\S]*?-->/g, '');
-  const title = htmlWithoutComments.match(
-    /<title\b[^>]*>([\s\S]*?)<\/title>/i,
-  );
+  const realRouteDirectory = await resolvedPath(routeDirectory);
+  const realIndexPath = await resolvedPath(indexPath);
+  if (realRouteDirectory === null || realIndexPath === null) {
+    failures.push(`${route.id}: could not resolve index.html`);
+    return null;
+  }
 
-  if (!title || title[1].trim() === '') {
+  if (!isWithinDirectory(realRouteDirectory, realIndexPath)) {
+    failures.push(`${route.id}: index.html resolves outside its route directory`);
+    return null;
+  }
+
+  if (!(await isRegularFile(realIndexPath))) {
+    failures.push(`${route.id}: index.html must be a readable regular file`);
+    return null;
+  }
+
+  let html;
+  try {
+    html = await readFile(realIndexPath, 'utf8');
+  } catch {
+    failures.push(`${route.id}: index.html must be a readable regular file`);
+    return null;
+  }
+
+  const { markup, styleBlocks } = sanitizeMarkup(html);
+  const tags = markupTags(markup);
+  const openingTags = tags.filter((tag) => !tag.closing);
+
+  if (!hasNonEmptyTitle(markup, tags)) {
     failures.push(`${route.id}: index.html must contain a non-empty <title>`);
   }
 
-  if (!/<h1\b[^>]*>/i.test(htmlWithoutComments)) {
+  if (!openingTags.some((tag) => tag.name === 'h1')) {
     failures.push(`${route.id}: index.html must contain an <h1>`);
   }
 
   if (route.generated) {
-    const sections = [...htmlWithoutComments.matchAll(/<section\b[^>]*>/gi)];
+    const sections = openingTags.filter((tag) => tag.name === 'section');
 
     if (sections.length < 5) {
       failures.push(
@@ -178,7 +492,7 @@ async function validateRoute(route, failures) {
       );
     }
 
-    if (sections.length === 0 || !/\bhero\b/i.test(sections[0][0])) {
+    if (sections.length === 0 || !/\bhero\b/i.test(sections[0].raw)) {
       failures.push(
         `${route.id}: first <section> opening tag must contain the word hero`,
       );
@@ -187,41 +501,69 @@ async function validateRoute(route, failures) {
 
   const checkedStylesheets = new Set();
 
-  for (const reference of htmlReferences(html)) {
-    const targetPath = await checkLocalReference(
+  for (const { attribute, reference } of htmlReferences(tags)) {
+    const target = await checkLocalReference(
       reference,
       indexPath,
       routeDirectory,
+      realRouteDirectory,
       route.id,
       failures,
+      attribute,
     );
 
     if (
-      targetPath !== null &&
-      extname(targetPath).toLowerCase() === '.css' &&
-      !checkedStylesheets.has(targetPath)
+      target !== null &&
+      extname(target.path).toLowerCase() === '.css' &&
+      !checkedStylesheets.has(target.path)
     ) {
-      checkedStylesheets.add(targetPath);
+      checkedStylesheets.add(target.path);
 
       try {
-        const css = await readFile(targetPath, 'utf8');
-        await checkCss(css, targetPath, routeDirectory, route.id, failures);
+        const css = await readFile(target.realPath, 'utf8');
+        await checkCss(
+          css,
+          target.path,
+          routeDirectory,
+          realRouteDirectory,
+          route.id,
+          failures,
+        );
       } catch {
         failures.push(
-          `${route.id}: could not read local stylesheet ${displayPath(targetPath)}`,
+          `${route.id}: could not read local stylesheet ${displayPath(target.path)}`,
         );
       }
     }
   }
 
-  await checkCss(
-    htmlWithoutComments,
-    indexPath,
-    routeDirectory,
-    route.id,
-    failures,
-  );
-  return html;
+  for (const styleBlock of styleBlocks) {
+    await checkCss(
+      styleBlock,
+      indexPath,
+      routeDirectory,
+      realRouteDirectory,
+      route.id,
+      failures,
+    );
+  }
+
+  for (const tag of openingTags) {
+    for (const attribute of tagAttributes(tag)) {
+      if (attribute.name === 'style') {
+        await checkCss(
+          attribute.value,
+          indexPath,
+          routeDirectory,
+          realRouteDirectory,
+          route.id,
+          failures,
+        );
+      }
+    }
+  }
+
+  return tags;
 }
 
 async function main() {
@@ -246,17 +588,19 @@ async function main() {
   }
 
   const failures = [];
-  let rootHtml = null;
+  let rootTags = null;
 
   for (const route of selectedRoutes) {
-    const html = await validateRoute(route, failures);
+    const tags = await validateRoute(route, failures);
     if (route.id === 'root') {
-      rootHtml = html;
+      rootTags = tags;
     }
   }
 
-  if (fullRun && rootHtml !== null) {
-    const rootReferences = htmlReferences(rootHtml, 'href');
+  if (fullRun && rootTags !== null) {
+    const rootReferences = htmlReferences(rootTags)
+      .filter(({ element, attribute }) => element === 'a' && attribute === 'href')
+      .map(({ reference }) => reference);
 
     for (const route of routes.filter(({ id }) => id !== 'root')) {
       const expectedLink = `./${route.directory}/`;
