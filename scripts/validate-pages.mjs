@@ -179,12 +179,13 @@ async function checkCss(
   }
 }
 
-const ignoredContentElements = new Set([
+const structuralIgnoredContentElements = new Set([
   'script',
   'style',
   'template',
   'noscript',
 ]);
+const referenceIgnoredContentElements = new Set(['script', 'style']);
 
 function readMarkupToken(markup, start) {
   if (markup.startsWith('<!--', start)) {
@@ -236,7 +237,7 @@ function readMarkupToken(markup, start) {
   return null;
 }
 
-function sanitizeMarkup(html) {
+function sanitizeMarkup(html, ignoredContentElements) {
   const output = [];
   const styleBlocks = [];
   let cursor = 0;
@@ -471,20 +472,31 @@ async function validateRoute(route, failures) {
     return null;
   }
 
-  const { markup, styleBlocks } = sanitizeMarkup(html);
-  const tags = markupTags(markup);
-  const openingTags = tags.filter((tag) => !tag.closing);
+  const { markup: structuralMarkup } = sanitizeMarkup(
+    html,
+    structuralIgnoredContentElements,
+  );
+  const { markup: referenceMarkup, styleBlocks } = sanitizeMarkup(
+    html,
+    referenceIgnoredContentElements,
+  );
+  const structuralTags = markupTags(structuralMarkup);
+  const structuralOpeningTags = structuralTags.filter((tag) => !tag.closing);
+  const referenceTags = markupTags(referenceMarkup);
+  const referenceOpeningTags = referenceTags.filter((tag) => !tag.closing);
 
-  if (!hasNonEmptyTitle(markup, tags)) {
+  if (!hasNonEmptyTitle(structuralMarkup, structuralTags)) {
     failures.push(`${route.id}: index.html must contain a non-empty <title>`);
   }
 
-  if (!openingTags.some((tag) => tag.name === 'h1')) {
+  if (!structuralOpeningTags.some((tag) => tag.name === 'h1')) {
     failures.push(`${route.id}: index.html must contain an <h1>`);
   }
 
   if (route.generated) {
-    const sections = openingTags.filter((tag) => tag.name === 'section');
+    const sections = structuralOpeningTags.filter(
+      (tag) => tag.name === 'section',
+    );
 
     if (sections.length < 5) {
       failures.push(
@@ -501,7 +513,7 @@ async function validateRoute(route, failures) {
 
   const checkedStylesheets = new Set();
 
-  for (const { attribute, reference } of htmlReferences(tags)) {
+  for (const { attribute, reference } of htmlReferences(referenceTags)) {
     const target = await checkLocalReference(
       reference,
       indexPath,
@@ -548,7 +560,7 @@ async function validateRoute(route, failures) {
     );
   }
 
-  for (const tag of openingTags) {
+  for (const tag of referenceOpeningTags) {
     for (const attribute of tagAttributes(tag)) {
       if (attribute.name === 'style') {
         await checkCss(
@@ -563,7 +575,7 @@ async function validateRoute(route, failures) {
     }
   }
 
-  return tags;
+  return structuralTags;
 }
 
 async function main() {
