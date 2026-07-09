@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Coca-Cola Zero Sugar can</title>
+  <desc id="desc">A stylized black soda can with a bright red ribbon and silver top.</desc>
+  <defs>
+    <linearGradient id="body" x1="0" x2="1">
+      <stop offset="0" stop-color="#050505"/>
+      <stop offset=".12" stop-color="#242424"/>
+      <stop offset=".34" stop-color="#0b0b0b"/>
+      <stop offset=".67" stop-color="#171717"/>
+      <stop offset=".88" stop-color="#030303"/>
+      <stop offset="1" stop-color="#202020"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2=".2">
+      <stop offset="0" stop-color="#6d7175"/>
+      <stop offset=".18" stop-color="#e2e3e4"/>
+      <stop offset=".5" stop-color="#898c90"/>
+      <stop offset=".8" stop-color="#f1f1f1"/>
+      <stop offset="1" stop-color="#65686b"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff2330"/>
+      <stop offset=".48" stop-color="#ee111c"/>
+      <stop offset="1" stop-color="#9f0008"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".48" stop-color="#fff" stop-opacity=".1"/>
+      <stop offset=".62" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="canClip">
+      <path d="M88 91c0-30 28-55 62-55h200c34 0 62 25 62 55v817c0 31-28 56-62 56H150c-34 0-62-25-62-56z"/>
+    </clipPath>
+    <filter id="softShadow" x="-30%" y="-10%" width="160%" height="140%">
+      <feDropShadow dx="10" dy="20" stdDeviation="18" flood-opacity=".48"/>
+    </filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>
+
+  <ellipse cx="250" cy="962" rx="156" ry="20" fill="#000" opacity=".42" filter="url(#blur)"/>
+  <g filter="url(#softShadow)">
+    <path d="M88 91c0-30 28-55 62-55h200c34 0 62 25 62 55v817c0 31-28 56-62 56H150c-34 0-62-25-62-56z" fill="url(#body)"/>
+    <g clip-path="url(#canClip)">
+      <path d="M-62 672c96-209 250-283 610-269l3 222c-312-36-466 22-568 196z" fill="url(#red)"/>
+      <path d="M-12 759c125-184 267-227 548-209" fill="none" stroke="#ff3842" stroke-width="10" opacity=".55"/>
+      <path d="M112 95h78v799h-78z" fill="url(#shine)"/>
+      <path d="M355 89h25v814h-25z" fill="#fff" opacity=".035"/>
+      <g fill="none" stroke="#fff" opacity=".32">
+        <circle cx="131" cy="215" r="4"/>
+        <circle cx="367" cy="252" r="6"/>
+        <circle cx="145" cy="344" r="7"/>
+        <circle cx="385" cy="702" r="4"/>
+        <circle cx="117" cy="797" r="5"/>
+        <circle cx="343" cy="850" r="7"/>
+      </g>
+      <text x="250" y="453" fill="#fff" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-style="italic" font-weight="700" letter-spacing="-4" text-anchor="middle">Coca-Cola</text>
+      <path d="M132 470c59 17 143 21 238 2" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".92"/>
+      <text x="250" y="548" fill="#fff" font-family="Arial Black, Arial, sans-serif" font-size="76" font-weight="900" letter-spacing="-5" text-anchor="middle">ZERO</text>
+      <text x="250" y="587" fill="#fff" font-family="Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="9" text-anchor="middle">SUGAR</text>
+      <text x="250" y="805" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="5" text-anchor="middle" opacity=".84">ORIGINAL TASTE</text>
+    </g>
+    <ellipse cx="250" cy="77" rx="162" ry="48" fill="url(#metal)"/>
+    <ellipse cx="250" cy="75" rx="145" ry="35" fill="#777b7f"/>
+    <ellipse cx="250" cy="74" rx="131" ry="28" fill="#b7babd"/>
+    <ellipse cx="250" cy="75" rx="111" ry="19" fill="#65696d" opacity=".42"/>
+    <g transform="translate(250 73) rotate(-8)">
+      <path d="M-56-5c0-13 14-23 31-23h52c18 0 31 10 31 23v16c0 11-10 20-24 22l-55 8c-19 3-35-8-35-23z" fill="#8c9093" stroke="#e5e6e7" stroke-width="4"/>
+      <ellipse cx="5" cy="0" rx="27" ry="13" fill="#55595d"/>
+      <ellipse cx="5" cy="0" rx="17" ry="7" fill="#aeb1b4"/>
+    </g>
+    <ellipse cx="250" cy="921" rx="160" ry="43" fill="#0a0a0a" stroke="#676a6d" stroke-width="7"/>
+    <ellipse cx="250" cy="916" rx="151" ry="31" fill="url(#body)"/>
+    <path d="M99 871c28 61 274 61 302 0" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="4"/>
+  </g>
+</svg>
