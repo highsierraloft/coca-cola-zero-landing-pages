@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 520" role="img" aria-labelledby="canTitle canDesc">
+  <title id="canTitle">Coca-Cola Zero Sugar can</title>
+  <desc id="canDesc">Illustration of a black can with a red dynamic ribbon and a ZERO SUGAR wordmark.</desc>
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#040404"/>
+      <stop offset="0.16" stop-color="#232323"/>
+      <stop offset="0.38" stop-color="#050505"/>
+      <stop offset="0.58" stop-color="#2c2c2c"/>
+      <stop offset="0.78" stop-color="#060606"/>
+      <stop offset="1" stop-color="#161616"/>
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eeeeee"/>
+      <stop offset="0.5" stop-color="#8d8d8d"/>
+      <stop offset="1" stop-color="#d4d4d4"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff3b30"/>
+      <stop offset="0.5" stop-color="#e4041a"/>
+      <stop offset="1" stop-color="#8f000c"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="bodyClip">
+      <rect x="30" y="34" width="180" height="452" rx="6"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="120" cy="486" rx="90" ry="20" fill="#050505"/>
+  <ellipse cx="120" cy="480" rx="90" ry="19" fill="url(#rimGrad)"/>
+
+  <g clip-path="url(#bodyClip)">
+    <rect x="30" y="34" width="180" height="452" fill="url(#bodyGrad)"/>
+    <path d="M30 214c34-34 82-34 116-6s64 30 64 30v50c-24 22-70 26-108-2s-72-6-72-6z" fill="url(#waveGrad)"/>
+    <rect x="70" y="34" width="26" height="452" fill="url(#sheen)"/>
+    <text x="120" y="146" text-anchor="middle" font-family="'Brush Script MT','Segoe Script',cursive" font-size="42" fill="#f7f7f5">Coca-Cola</text>
+    <text x="120" y="404" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="26" letter-spacing="1" textLength="150" lengthAdjust="spacingAndGlyphs" fill="#f7f7f5">ZERO SUGAR</text>
+  </g>
+
+  <rect x="30" y="34" width="180" height="452" rx="6" fill="none" stroke="#3a3a3a" stroke-width="1.5"/>
+  <ellipse cx="120" cy="34" rx="90" ry="20" fill="url(#rimGrad)"/>
+  <ellipse cx="120" cy="34" rx="90" ry="20" fill="none" stroke="#5a5a5a" stroke-width="1.5"/>
+  <ellipse cx="120" cy="20" rx="19" ry="6.5" fill="#bcbcbc"/>
+  <ellipse cx="120" cy="20" rx="19" ry="6.5" fill="none" stroke="#8a8a8a" stroke-width="1"/>
+  <rect x="112" y="12" width="16" height="8" rx="4" fill="#9a9a9a"/>
+</svg>
