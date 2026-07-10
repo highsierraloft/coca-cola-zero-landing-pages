@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coca-Cola Zero Sugar — Real Taste, Zero Sugar</title>
+  <meta name="description" content="Coca-Cola Zero Sugar: the same bold Coca-Cola taste you love, with zero sugar and zero calories. Explore the lineup, the facts, and the flavors.">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="siteNav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#hero" aria-label="Coca-Cola Zero Sugar, back to top">
+        <span class="nav__dot" aria-hidden="true"></span>
+        COKE <span class="text-accent">ZERO</span> SUGAR
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#taste">Taste</a>
+        <a href="#facts">Facts</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#stories">Stories</a>
+        <a href="#planet">Planet</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="btn btn--sm btn--primary" href="#signup">Get Zero</a>
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          type="button"
+          aria-controls="navLinks"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="bubbles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="shell hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Real Coca-Cola Taste · Zero Sugar</p>
+          <h1 class="hero__title">
+            Taste everything.
+            <span class="text-accent">Sugar? Zero.</span>
+          </h1>
+          <p class="hero__lede">
+            The same bold, unmistakable Coca-Cola taste you've always loved —
+            brewed with zero sugar and zero calories. This is Coca-Cola Zero
+            Sugar.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="#signup">Find Your Zero</a>
+            <a class="btn btn--ghost btn--lg" href="#flavors">See the lineup ↓</a>
+          </div>
+
+          <ul class="chip-row" aria-label="Key facts">
+            <li class="chip">0g Sugar</li>
+            <li class="chip">0 Calories</li>
+            <li class="chip">100% Coca-Cola Taste</li>
+          </ul>
+        </div>
+
+        <div class="hero__stage reveal" style="--reveal-delay: 120ms">
+          <img
+            class="hero__can"
+            src="./assets/can.svg"
+            alt="Illustration of a Coca-Cola Zero Sugar can with a red dynamic ribbon"
+            width="240"
+            height="520"
+          >
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#taste" aria-label="Scroll to next section">
+        <span></span>
+      </a>
+    </section>
+
+    <section class="taste shell" id="taste" aria-labelledby="taste-title">
+      <div class="section-head reveal">
+        <p class="section-index">01 — Taste</p>
+        <h2 id="taste-title">One taste. No sugar. No trade-offs.</h2>
+      </div>
+
+      <div class="taste__grid">
+        <div class="taste__copy reveal">
+          <p>
+            Coca-Cola Zero Sugar was crafted to deliver the same bold,
+            refreshing taste as Coca-Cola Original Taste — down to the last
+            drop. No dulled edges, no watered-down finish. Just Coca-Cola,
+            with zero sugar.
+          </p>
+          <p>
+            Every can goes through the same relentless taste-matching process:
+            side-by-side tastings, iterative recipes, and a simple rule — if
+            it doesn't taste like Coca-Cola, it doesn't ship.
+          </p>
+
+          <ul class="feature-list">
+            <li>
+              <span class="feature-list__icon" aria-hidden="true">✓</span>
+              Real Coca-Cola taste, verified in side-by-side tastings
+            </li>
+            <li>
+              <span class="feature-list__icon" aria-hidden="true">✓</span>
+              Zero sugar, zero calories, zero compromise
+            </li>
+            <li>
+              <span class="feature-list__icon" aria-hidden="true">✓</span>
+              Refreshingly crisp finish, straight from the can
+            </li>
+          </ul>
+        </div>
+
+        <div class="taste__visual reveal" style="--reveal-delay: 120ms" aria-hidden="true">
+          <div class="taste__ring"></div>
+          <div class="taste__ring taste__ring--outer"></div>
+          <span class="taste__badge">0<small>g sugar</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts shell" id="facts" aria-labelledby="facts-title">
+      <div class="section-head reveal">
+        <p class="section-index">02 — By the numbers</p>
+        <h2 id="facts-title">Zero sugar. Zero compromise.</h2>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card reveal">
+          <span class="stat-card__number" data-count-to="0">0</span>
+          <span class="stat-card__label">Calories per can</span>
+        </div>
+        <div class="stat-card reveal" style="--reveal-delay: 80ms">
+          <span class="stat-card__number" data-count-to="0">0<small>g</small></span>
+          <span class="stat-card__label">Sugar per can</span>
+        </div>
+        <div class="stat-card reveal" style="--reveal-delay: 160ms">
+          <span class="stat-card__number" data-count-to="100">0<small>%</small></span>
+          <span class="stat-card__label">Coca-Cola taste match*</span>
+        </div>
+        <div class="stat-card reveal" style="--reveal-delay: 240ms">
+          <span class="stat-card__number" data-count-to="355">0<small>ml</small></span>
+          <span class="stat-card__label">Standard can size</span>
+        </div>
+      </div>
+
+      <p class="facts__footnote reveal">
+        *Based on internal side-by-side taste comparisons against Coca-Cola
+        Original Taste.
+      </p>
+    </section>
+
+    <section class="flavors shell" id="flavors" aria-labelledby="flavors-title">
+      <div class="section-head reveal">
+        <p class="section-index">03 — The lineup</p>
+        <h2 id="flavors-title">Four ways to zero.</h2>
+      </div>
+
+      <div class="flavors__grid">
+        <div class="flavor-picker reveal" role="group" aria-label="Choose a flavor">
+          <button
+            type="button"
+            class="flavor-swatch is-active"
+            style="--accent:#e4041a"
+            data-name="Zero Sugar"
+            data-desc="The original Coca-Cola taste, brewed with zero sugar and zero calories."
+            aria-pressed="true"
+          >
+            <span class="flavor-swatch__dot"></span>
+            Zero Sugar
+          </button>
+          <button
+            type="button"
+            class="flavor-swatch"
+            style="--accent:#c6003d"
+            data-name="Zero Sugar Cherry"
+            data-desc="Classic Coca-Cola taste with a bold hit of cherry, zero sugar, zero calories."
+            aria-pressed="false"
+          >
+            <span class="flavor-swatch__dot"></span>
+            Cherry
+          </button>
+          <button
+            type="button"
+            class="flavor-swatch"
+            style="--accent:#d9a441"
+            data-name="Zero Sugar Vanilla"
+            data-desc="Smooth vanilla layered over the classic Coca-Cola taste, without the sugar."
+            aria-pressed="false"
+          >
+            <span class="flavor-swatch__dot"></span>
+            Vanilla
+          </button>
+          <button
+            type="button"
+            class="flavor-swatch"
+            style="--accent:#2fae45"
+            data-name="Zero Sugar Lime"
+            data-desc="A zesty citrus twist on the Coca-Cola taste you know, zero sugar included."
+            aria-pressed="false"
+          >
+            <span class="flavor-swatch__dot"></span>
+            Lime
+          </button>
+        </div>
+
+        <div class="flavor-stage reveal" style="--reveal-delay: 120ms">
+          <div class="flavor-stage__glow" id="flavorGlow" style="--accent:#e4041a" aria-hidden="true"></div>
+          <img
+            class="flavor-stage__can"
+            src="./assets/can.svg"
+            alt="Illustration of a Coca-Cola Zero Sugar can"
+            width="180"
+            height="390"
+          >
+          <div class="flavor-stage__info">
+            <h3 id="flavorName">Zero Sugar</h3>
+            <p id="flavorDesc">
+              The original Coca-Cola taste, brewed with zero sugar and zero
+              calories.
+            </p>
+            <span class="chip chip--accent">0 sugar · 0 calories · 100% flavor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stories shell" id="stories" aria-labelledby="stories-title">
+      <div class="section-head reveal">
+        <p class="section-index">04 — Real stories</p>
+        <h2 id="stories-title">Made for right now.</h2>
+      </div>
+
+      <div class="slider reveal" data-slider>
+        <div class="slider__track" id="sliderTrack">
+          <figure class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              "Honestly can't tell it apart from the original. This is my
+              go-to for movie nights now."
+            </blockquote>
+            <figcaption>— Maya R., long-time drinker</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              "I switched three years ago and never looked back. Same fizz,
+              same bite, zero sugar."
+            </blockquote>
+            <figcaption>— Daniel K., everyday drinker</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              "Cherry Zero with dinner is non-negotiable at this point.
+              Perfectly balanced."
+            </blockquote>
+            <figcaption>— Priya S., flavor collector</figcaption>
+          </figure>
+        </div>
+
+        <div class="slider__controls">
+          <button type="button" class="slider__btn" id="sliderPrev" aria-label="Previous story">‹</button>
+          <div class="slider__dots" id="sliderDots" role="tablist" aria-label="Select story"></div>
+          <button type="button" class="slider__btn" id="sliderNext" aria-label="Next story">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="planet shell" id="planet" aria-labelledby="planet-title">
+      <div class="planet__grid">
+        <div class="section-head reveal">
+          <p class="section-index">05 — Our planet</p>
+          <h2 id="planet-title">A world without waste.</h2>
+          <p class="planet__copy">
+            Every Coca-Cola Zero Sugar can is made from infinitely recyclable
+            aluminum. Recycle yours so it can come back as a new can — again
+            and again.
+          </p>
+
+          <ul class="planet__list">
+            <li><span class="feature-list__icon" aria-hidden="true">♻</span> 100% recyclable aluminum can</li>
+            <li><span class="feature-list__icon" aria-hidden="true">♻</span> Designed to be recycled and reborn</li>
+            <li><span class="feature-list__icon" aria-hidden="true">♻</span> Working toward a world without waste</li>
+          </ul>
+        </div>
+
+        <div class="planet__meter reveal" style="--reveal-delay: 120ms">
+          <div class="meter">
+            <div class="meter__fill" id="meterFill" data-fill="100"></div>
+          </div>
+          <p class="meter__label"><strong>Aluminum:</strong> infinitely recyclable, can after can.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup shell" id="signup" aria-labelledby="signup-title">
+      <div class="signup__panel reveal">
+        <div class="signup__copy">
+          <p class="section-index">06 — Stay refreshed</p>
+          <h2 id="signup-title">Get Zero in your inbox.</h2>
+          <p>New flavors, limited drops, and taste-test invites — no sugar, just updates.</p>
+        </div>
+
+        <form class="signup__form" id="signupForm" novalidate>
+          <label class="sr-only" for="emailInput">Email address</label>
+          <input
+            type="email"
+            id="emailInput"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="btn btn--primary">Sign up</button>
+          <p class="signup__status" id="signupStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div class="site-footer__top">
+      <a class="nav__brand" href="#hero">
+        <span class="nav__dot" aria-hidden="true"></span>
+        COKE <span class="text-accent">ZERO</span> SUGAR
+      </a>
+      <nav aria-label="Footer">
+        <a href="#taste">Taste</a>
+        <a href="#facts">Facts</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#stories">Stories</a>
+        <a href="#planet">Planet</a>
+      </nav>
+    </div>
+    <p class="site-footer__legal">
+      Coca-Cola, Coca-Cola Zero Sugar and the Contour Bottle are trademarks of
+      The Coca-Cola Company. This page is an unofficial, AI-generated concept
+      design created for demonstration purposes only and is not affiliated
+      with, endorsed by, or sponsored by The Coca-Cola Company.
+    </p>
+    <p class="site-footer__meta">© <span id="year">2026</span> · Concept build for a landing-page benchmark</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
