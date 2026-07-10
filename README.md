@@ -1,6 +1,6 @@
 # Coca-Cola Zero AI Landing Page Benchmark
 
-Six standalone Coca-Cola Zero advertisements are collected under one comparison gallery for side-by-side review.
+Seven standalone Coca-Cola Zero advertisements are collected under one comparison gallery for side-by-side review.
 
 Live comparison: <https://highsierraloft.github.io/coca-cola-zero-landing-pages/>
 
@@ -14,6 +14,7 @@ Live comparison: <https://highsierraloft.github.io/coca-cola-zero-landing-pages/
 | GPT-5.6 Sol / OpenAI | Ultra | `/gpt-56-sol/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-sol/> |
 | GPT-5.6 Terra / OpenAI | Ultra | `/gpt-56-terra/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-terra/> |
 | GPT-5.6 Luna / OpenAI | Max | `/gpt-56-luna/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-luna/> |
+| Claude Opus 4.8 / Anthropic | Max | `/claude-opus-4-8/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/claude-opus-4-8/> |
 
 ## GPT-5.6 benchmark prompt
 
@@ -28,6 +29,7 @@ All three GPT-5.6 runs received the same prompt and the same operational wrapper
 - GPT-5.6 Sol: initial result `8b54c536`; follow-up fix `52e9a6d`.
 - GPT-5.6 Terra: initial result `142efbf`; follow-up fix `fa893a3`.
 - GPT-5.6 Luna: initial result `f3bf55e`; follow-up fix `00de094`.
+- Claude Opus 4.8: added on branch `feat/add-claude-opis-4.8-page` from the same brief, in its own isolated folder with no reuse of a sibling result.
 
 ## Local verification
 

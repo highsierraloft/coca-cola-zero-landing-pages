@@ -31,6 +31,11 @@ const routes = [
   { id: 'gpt-56-sol', directory: 'gpt-56-sol', generated: true },
   { id: 'gpt-56-terra', directory: 'gpt-56-terra', generated: true },
   { id: 'gpt-56-luna', directory: 'gpt-56-luna', generated: true },
+  {
+    id: 'claude-opus-4-8',
+    directory: 'claude-opus-4-8',
+    generated: true,
+  },
 ];
 
 function cleanReference(rawReference) {

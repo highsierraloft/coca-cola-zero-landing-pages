@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Coca-Cola Zero Sugar — real Coca-Cola taste with zero sugar and zero calories. Explore the flavours, the craft, and the bold side of zero."
+    />
+    <meta name="theme-color" content="#08080a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Coca-Cola Zero — Real Taste. Zero Sugar." />
+    <meta
+      property="og:description"
+      content="The bold, refreshing Coca-Cola taste you love — now with zero sugar and zero calories."
+    />
+    <title>Coca-Cola Zero — Real Taste. Zero Sugar.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23050506'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='10'%20fill='none'%20stroke='%23e4002b'%20stroke-width='4'/%3E%3C/svg%3E"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <script>
+      /* Progressive-enhancement flag: set before paint so reveal styles apply
+         without a flash. The load handler is a safety net — if app.js never
+         runs, content is revealed anyway so nothing stays hidden. */
+      document.documentElement.classList.add("js");
+      window.addEventListener("load", function () {
+        if (window.__revealReady) return;
+        var hidden = document.querySelectorAll(".reveal:not(.is-visible)");
+        for (var i = hidden.length - 1; i >= 0; i -= 1) {
+          hidden[i].classList.add("is-visible");
+        }
+      });
+    </script>
+  </head>
+
+  <body id="top">
+    <a class="skip-link" href="#hero">Skip to content</a>
+
+    <!-- ============================ HEADER / NAV ============================ -->
+    <header class="site-header" data-header>
+      <div class="shell site-header__inner">
+        <a class="brand" href="#top" aria-label="Coca-Cola Zero home">
+          <span class="brand__mark" aria-hidden="true">
+            <span class="brand__ring"></span>
+            <span class="brand__zero">0</span>
+          </span>
+          <span class="brand__word">
+            <span class="brand__coke">Coca-Cola</span>
+            <span class="brand__zero-word">Zero Sugar</span>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primary-menu"
+            data-nav-toggle
+          >
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="sr-only">Menu</span>
+          </button>
+          <ul class="nav-menu" id="primary-menu" data-nav-menu>
+            <li><a href="#taste">Taste</a></li>
+            <li><a href="#flavors">Flavours</a></li>
+            <li><a href="#zero">The Zeros</a></li>
+            <li><a href="#craft">Craft</a></li>
+            <li><a href="#planet">Planet</a></li>
+            <li class="nav-menu__cta">
+              <a class="btn btn--solid btn--sm" href="#join">Get updates</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ================================ HERO ================================ -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__grid shell">
+          <div class="hero__copy reveal">
+            <p class="eyebrow">
+              <span class="eyebrow__dot" aria-hidden="true"></span>
+              Zero sugar · Zero calories · 100% bold
+            </p>
+            <h1 id="hero-title" class="hero__title">
+              <span class="hero__title-line">Zero sugar.</span>
+              <span class="hero__title-line hero__title-line--accent">Maximum taste.</span>
+            </h1>
+            <p class="hero__lead">
+              The bold, unmistakable Coca-Cola taste you love — now with zero
+              sugar and zero calories. Same iconic flavour. Nothing held back.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--solid" href="#flavors">Explore the flavours</a>
+              <a class="btn btn--ghost" href="#taste">
+                Why it tastes so good
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+            <dl class="hero__stats" aria-label="At a glance">
+              <div>
+                <dt>Sugar</dt>
+                <dd><span class="hero__stat-num">0</span><span class="hero__stat-unit">g</span></dd>
+              </div>
+              <div>
+                <dt>Calories</dt>
+                <dd><span class="hero__stat-num">0</span><span class="hero__stat-unit">kcal</span></dd>
+              </div>
+              <div>
+                <dt>Flavours</dt>
+                <dd><span class="hero__stat-num">4</span><span class="hero__stat-unit">bold</span></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="hero__stage reveal" data-tilt>
+            <div class="hero__fizz" aria-hidden="true">
+              <span style="--x: 8%; --s: 10px; --t: 9s; --d: 0s"></span>
+              <span style="--x: 16%; --s: 6px; --t: 7s; --d: 1.2s"></span>
+              <span style="--x: 24%; --s: 14px; --t: 11s; --d: 2s"></span>
+              <span style="--x: 33%; --s: 8px; --t: 8s; --d: 0.6s"></span>
+              <span style="--x: 42%; --s: 5px; --t: 6.5s; --d: 3s"></span>
+              <span style="--x: 50%; --s: 12px; --t: 10s; --d: 1.5s"></span>
+              <span style="--x: 58%; --s: 7px; --t: 8.5s; --d: 2.6s"></span>
+              <span style="--x: 66%; --s: 9px; --t: 9.5s; --d: 0.3s"></span>
+              <span style="--x: 74%; --s: 5px; --t: 7s; --d: 4s"></span>
+              <span style="--x: 82%; --s: 13px; --t: 11.5s; --d: 1s"></span>
+              <span style="--x: 90%; --s: 7px; --t: 8s; --d: 2.2s"></span>
+              <span style="--x: 12%; --s: 4px; --t: 6s; --d: 5s"></span>
+              <span style="--x: 38%; --s: 6px; --t: 7.5s; --d: 3.6s"></span>
+              <span style="--x: 62%; --s: 4px; --t: 6.2s; --d: 4.5s"></span>
+              <span style="--x: 86%; --s: 5px; --t: 6.8s; --d: 3.2s"></span>
+              <span style="--x: 28%; --s: 4px; --t: 6.4s; --d: 5.5s"></span>
+            </div>
+
+            <!-- Original stylized can illustration (SVG, self-contained) -->
+            <svg
+              class="can"
+              viewBox="0 0 360 560"
+              role="img"
+              aria-label="A chilled can of Coca-Cola Zero Sugar"
+              data-tilt-target
+            >
+              <defs>
+                <linearGradient id="canBody" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#2a2a30" />
+                  <stop offset="0.14" stop-color="#0b0b0d" />
+                  <stop offset="0.5" stop-color="#050506" />
+                  <stop offset="0.82" stop-color="#141417" />
+                  <stop offset="1" stop-color="#000000" />
+                </linearGradient>
+                <linearGradient id="canSheen" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0" />
+                  <stop offset="0.16" stop-color="#ffffff" stop-opacity="0.32" />
+                  <stop offset="0.26" stop-color="#ffffff" stop-opacity="0" />
+                  <stop offset="0.7" stop-color="#000000" stop-opacity="0" />
+                  <stop offset="1" stop-color="#000000" stop-opacity="0.45" />
+                </linearGradient>
+                <linearGradient id="canRed" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ff3b52" />
+                  <stop offset="0.5" stop-color="#e4002b" />
+                  <stop offset="1" stop-color="#9c0020" />
+                </linearGradient>
+                <linearGradient id="canLid" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#8b8b95" />
+                  <stop offset="0.3" stop-color="#e9e9f1" />
+                  <stop offset="0.55" stop-color="#aeaeb8" />
+                  <stop offset="0.8" stop-color="#f2f2f8" />
+                  <stop offset="1" stop-color="#7c7c86" />
+                </linearGradient>
+                <radialGradient id="canBase" cx="0.5" cy="0.5" r="0.5">
+                  <stop offset="0" stop-color="#000000" stop-opacity="0.55" />
+                  <stop offset="1" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- ground shadow -->
+              <ellipse cx="180" cy="520" rx="128" ry="26" fill="url(#canBase)" />
+
+              <!-- can body -->
+              <g>
+                <rect x="58" y="66" width="244" height="418" rx="30" fill="url(#canBody)" />
+
+                <!-- red brand band -->
+                <rect x="58" y="238" width="244" height="150" fill="url(#canRed)" />
+                <rect x="58" y="238" width="244" height="150" fill="url(#canSheen)" opacity="0.35" />
+
+                <!-- brand typography on the band -->
+                <text
+                  x="180"
+                  y="276"
+                  text-anchor="middle"
+                  fill="#ffffff"
+                  font-family="Inter, Arial, sans-serif"
+                  font-size="17"
+                  font-weight="800"
+                  letter-spacing="5"
+                >COCA-COLA</text>
+                <text
+                  x="180"
+                  y="352"
+                  text-anchor="middle"
+                  fill="#ffffff"
+                  font-family="Anton, Arial, sans-serif"
+                  font-size="66"
+                  letter-spacing="2"
+                >ZERO</text>
+
+                <!-- sub label below band -->
+                <text
+                  x="180"
+                  y="426"
+                  text-anchor="middle"
+                  fill="#d9d9e2"
+                  font-family="Inter, Arial, sans-serif"
+                  font-size="13"
+                  font-weight="700"
+                  letter-spacing="7"
+                >ZERO SUGAR</text>
+
+                <!-- cylinder sheen over whole body -->
+                <rect x="58" y="66" width="244" height="418" rx="30" fill="url(#canSheen)" />
+
+                <!-- crisp left highlight -->
+                <rect x="86" y="80" width="10" height="390" rx="5" fill="#ffffff" opacity="0.14" />
+              </g>
+
+              <!-- lid -->
+              <g>
+                <ellipse cx="180" cy="70" rx="122" ry="26" fill="url(#canLid)" />
+                <ellipse cx="180" cy="66" rx="108" ry="21" fill="#0b0b0d" opacity="0.9" />
+                <ellipse cx="180" cy="66" rx="108" ry="21" fill="url(#canLid)" opacity="0.25" />
+                <ellipse cx="180" cy="64" rx="30" ry="7" fill="#1a1a1f" />
+                <rect x="168" y="58" width="24" height="9" rx="4" fill="#c9c9d2" />
+              </g>
+
+              <!-- condensation droplets -->
+              <g fill="#ffffff" opacity="0.5">
+                <circle cx="104" cy="150" r="3" />
+                <circle cx="120" cy="196" r="2" />
+                <circle cx="92" cy="240" r="2.4" />
+                <circle cx="268" cy="170" r="2.6" />
+                <circle cx="256" cy="228" r="2" />
+                <circle cx="278" cy="300" r="3.2" />
+                <circle cx="98" cy="420" r="2.2" />
+                <circle cx="262" cy="430" r="2.6" />
+                <circle cx="120" cy="452" r="2" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <a class="hero__scroll" href="#taste" aria-label="Scroll to taste">
+          <span class="hero__scroll-text">Scroll</span>
+          <span class="hero__scroll-line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <!-- ================================ TASTE =============================== -->
+      <section class="section taste" id="taste" aria-labelledby="taste-title">
+        <div class="shell taste__grid">
+          <div class="taste__lede reveal">
+            <p class="section-index">01 — The taste</p>
+            <h2 id="taste-title" class="display">
+              Real Coca-Cola taste.
+              <span class="text-red">Zero compromise.</span>
+            </h2>
+          </div>
+          <div class="taste__body reveal">
+            <p class="lead">
+              We didn't water it down. Coca-Cola Zero Sugar is engineered to
+              deliver the deep, caramel-bright, perfectly fizzy character of the
+              original — without a single gram of sugar getting in the way.
+            </p>
+            <ul class="taste__points">
+              <li>
+                <span class="taste__points-key">Bold</span>
+                A full-bodied cola hit, ice-cold and unmistakable.
+              </li>
+              <li>
+                <span class="taste__points-key">Balanced</span>
+                Sweetness tuned by expert blenders, never cloying.
+              </li>
+              <li>
+                <span class="taste__points-key">Bottomless</span>
+                Crisp enough to keep up, refill after refill.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>Zero Sugar</span><span class="marquee__dot">•</span>
+            <span>Zero Calories</span><span class="marquee__dot">•</span>
+            <span>Ice Cold</span><span class="marquee__dot">•</span>
+            <span>Bold Taste</span><span class="marquee__dot">•</span>
+            <span>Zero Sugar</span><span class="marquee__dot">•</span>
+            <span>Zero Calories</span><span class="marquee__dot">•</span>
+            <span>Ice Cold</span><span class="marquee__dot">•</span>
+            <span>Bold Taste</span><span class="marquee__dot">•</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================== FLAVOURS ============================= -->
+      <section class="section flavors" id="flavors" aria-labelledby="flavors-title">
+        <div class="shell">
+          <header class="section-head reveal">
+            <p class="section-index">02 — The line-up</p>
+            <h2 id="flavors-title" class="display">Four ways to go zero</h2>
+            <p class="section-head__sub">
+              One zero-sugar promise, four distinct personalities. Hover a can to
+              meet each one.
+            </p>
+          </header>
+
+          <ul class="flavor-grid">
+            <li class="flavor-card reveal" style="--flavor: #e4002b; --i: 0">
+              <div class="flavor-card__can" aria-hidden="true">
+                <span class="flavor-card__can-body"></span>
+                <span class="flavor-card__can-band">ZERO</span>
+              </div>
+              <h3>Original</h3>
+              <p>The classic. Deep cola character, zero sugar, endlessly crisp.</p>
+              <span class="flavor-card__tag">Signature</span>
+            </li>
+            <li class="flavor-card reveal" style="--flavor: #c81d4a; --i: 1">
+              <div class="flavor-card__can" aria-hidden="true">
+                <span class="flavor-card__can-body"></span>
+                <span class="flavor-card__can-band">ZERO</span>
+              </div>
+              <h3>Cherry</h3>
+              <p>A wave of dark cherry over that unmistakable cola base.</p>
+              <span class="flavor-card__tag">Fruit-forward</span>
+            </li>
+            <li class="flavor-card reveal" style="--flavor: #d8a24a; --i: 2">
+              <div class="flavor-card__can" aria-hidden="true">
+                <span class="flavor-card__can-body"></span>
+                <span class="flavor-card__can-band">ZERO</span>
+              </div>
+              <h3>Vanilla</h3>
+              <p>Smooth, warm vanilla rounding off every ice-cold sip.</p>
+              <span class="flavor-card__tag">Smooth</span>
+            </li>
+            <li class="flavor-card reveal" style="--flavor: #e0d24a; --i: 3">
+              <div class="flavor-card__can" aria-hidden="true">
+                <span class="flavor-card__can-body"></span>
+                <span class="flavor-card__can-band">ZERO</span>
+              </div>
+              <h3>Lemon</h3>
+              <p>A zesty citrus lift that snaps the whole thing awake.</p>
+              <span class="flavor-card__tag">Zesty</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================== THE ZEROS ============================= -->
+      <section class="section zeros" id="zero" aria-labelledby="zeros-title">
+        <div class="shell zeros__grid">
+          <div class="zeros__intro reveal">
+            <p class="section-index">03 — By the numbers</p>
+            <h2 id="zeros-title" class="display">
+              The zeros that
+              <span class="text-red">matter</span>
+            </h2>
+            <p class="lead">
+              Everything you want from a cola, and a short list of everything you
+              don't. These are the numbers on every can.
+            </p>
+          </div>
+
+          <dl class="stat-grid" data-counters>
+            <div class="stat reveal">
+              <dt>Grams of sugar</dt>
+              <dd class="stat__num" data-count-to="0">0</dd>
+              <p>Per 330ml can. Every single one.</p>
+            </div>
+            <div class="stat reveal">
+              <dt>Calories</dt>
+              <dd class="stat__num" data-count-to="0">0</dd>
+              <p>Refresh without the maths.</p>
+            </div>
+            <div class="stat reveal">
+              <dt>% real cola taste</dt>
+              <dd class="stat__num" data-count-to="100" data-count-suffix="%">0%</dd>
+              <p>Tuned to match the original.</p>
+            </div>
+            <div class="stat reveal">
+              <dt>Bold flavours</dt>
+              <dd class="stat__num" data-count-to="4">0</dd>
+              <p>Original, Cherry, Vanilla, Lemon.</p>
+            </div>
+          </dl>
+        </div>
+
+        <div class="shell">
+          <div class="nutrition reveal" aria-label="Typical values per 100 millilitres">
+            <h3 class="nutrition__title">Typical values <span>per 100 ml</span></h3>
+            <table class="nutrition__table">
+              <caption class="sr-only">
+                Nutritional information for Coca-Cola Zero Sugar per 100 millilitres
+              </caption>
+              <tbody>
+                <tr><th scope="row">Energy</th><td>0.9 kJ / 0.2 kcal</td></tr>
+                <tr><th scope="row">Fat</th><td>0 g</td></tr>
+                <tr><th scope="row">Carbohydrate</th><td>0 g</td></tr>
+                <tr><th scope="row">of which sugars</th><td>0 g</td></tr>
+                <tr><th scope="row">Protein</th><td>0 g</td></tr>
+                <tr><th scope="row">Salt</th><td>0.01 g</td></tr>
+              </tbody>
+            </table>
+            <p class="nutrition__note">
+              Illustrative values for this design demo. Check the can for the
+              definitive nutritional breakdown.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================ CRAFT ============================== -->
+      <section class="section craft" id="craft" aria-labelledby="craft-title">
+        <div class="shell">
+          <header class="section-head reveal">
+            <p class="section-index">04 — The craft</p>
+            <h2 id="craft-title" class="display">The science of zero</h2>
+            <p class="section-head__sub">
+              Removing the sugar is easy. Keeping the taste is the hard part —
+              here's how it holds together.
+            </p>
+          </header>
+
+          <ol class="craft-steps">
+            <li class="craft-step reveal">
+              <span class="craft-step__num" aria-hidden="true">01</span>
+              <h3>Start with the icon</h3>
+              <p>
+                Begin from the original Coca-Cola flavour profile — the benchmark
+                every sip is measured against.
+              </p>
+            </li>
+            <li class="craft-step reveal">
+              <span class="craft-step__num" aria-hidden="true">02</span>
+              <h3>Rebuild the sweetness</h3>
+              <p>
+                A carefully balanced sweetener blend recreates the roundness of
+                sugar without the calories.
+              </p>
+            </li>
+            <li class="craft-step reveal">
+              <span class="craft-step__num" aria-hidden="true">03</span>
+              <h3>Tune the fizz</h3>
+              <p>
+                Precise carbonation delivers that signature bite and the crisp,
+                clean finish you expect.
+              </p>
+            </li>
+            <li class="craft-step reveal">
+              <span class="craft-step__num" aria-hidden="true">04</span>
+              <h3>Taste, and taste again</h3>
+              <p>
+                Blenders refine the recipe until it's indistinguishable in spirit
+                from the original — just without the sugar.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- =============================== MOMENTS ============================= -->
+      <section class="section moments" id="moments" aria-labelledby="moments-title">
+        <div class="shell">
+          <header class="section-head reveal">
+            <p class="section-index">05 — In the wild</p>
+            <h2 id="moments-title" class="display">Made for your moments</h2>
+          </header>
+
+          <div class="quote-grid">
+            <figure class="quote reveal">
+              <blockquote>
+                “Cold Coca-Cola Zero and a late shift. That's the whole ritual.
+                It tastes like the real thing because it basically is.”
+              </blockquote>
+              <figcaption>
+                <span class="quote__name">Mara V.</span>
+                <span class="quote__role">Line cook</span>
+              </figcaption>
+            </figure>
+            <figure class="quote reveal quote--accent">
+              <blockquote>
+                “I switched for the zero sugar and stayed for the taste. Honestly
+                didn't expect to notice zero difference.”
+              </blockquote>
+              <figcaption>
+                <span class="quote__name">Dev P.</span>
+                <span class="quote__role">Five-a-side regular</span>
+              </figcaption>
+            </figure>
+            <figure class="quote reveal">
+              <blockquote>
+                “Cherry Zero over ice on a Friday. It's a small thing that makes
+                the week land properly.”
+              </blockquote>
+              <figcaption>
+                <span class="quote__name">Ines K.</span>
+                <span class="quote__role">Graphic designer</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="moments__disclaimer">Illustrative quotes created for this design demo.</p>
+        </div>
+      </section>
+
+      <!-- =============================== PLANET ============================== -->
+      <section class="section planet" id="planet" aria-labelledby="planet-title">
+        <div class="shell planet__grid">
+          <div class="planet__copy reveal">
+            <p class="section-index">06 — The planet</p>
+            <h2 id="planet-title" class="display">
+              Bold taste, <span class="text-red">lighter footprint</span>
+            </h2>
+            <p class="lead">
+              Zero sugar is only half of it. The ambition is a can and bottle you
+              can feel good about putting back in the loop.
+            </p>
+            <a class="btn btn--ghost" href="#join">
+              Follow the progress
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <ul class="planet__list reveal">
+            <li>
+              <span class="planet__stat">100%</span>
+              <span class="planet__label">Recyclable aluminium can, cap to base.</span>
+            </li>
+            <li>
+              <span class="planet__stat">rPET</span>
+              <span class="planet__label">Bottles moving toward recycled plastic.</span>
+            </li>
+            <li>
+              <span class="planet__stat">Refill</span>
+              <span class="planet__label">Designed for a world that gives it back.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================================ JOIN =============================== -->
+      <section class="section join" id="join" aria-labelledby="join-title">
+        <div class="join__glow" aria-hidden="true"></div>
+        <div class="shell join__inner reveal">
+          <h2 id="join-title" class="display">
+            Join the <span class="text-red">Zero</span> list
+          </h2>
+          <p class="lead">
+            Be first to hear about new flavours, drops, and the occasional very
+            cold surprise. No sugar, no spam.
+          </p>
+          <form class="join__form" action="#join" data-join-form novalidate>
+            <label class="sr-only" for="join-email">Email address</label>
+            <input
+              class="join__input"
+              id="join-email"
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            />
+            <button class="btn btn--solid" type="submit">Count me in</button>
+            <p class="join__status" data-join-status role="status" aria-live="polite"></p>
+          </form>
+          <p class="join__fineprint">
+            This is an independent design demo — the form doesn't send anything
+            anywhere.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- =============================== FOOTER ============================== -->
+    <footer class="site-footer">
+      <div class="shell site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="brand" href="#top" aria-label="Coca-Cola Zero home">
+            <span class="brand__mark" aria-hidden="true">
+              <span class="brand__ring"></span>
+              <span class="brand__zero">0</span>
+            </span>
+            <span class="brand__word">
+              <span class="brand__coke">Coca-Cola</span>
+              <span class="brand__zero-word">Zero Sugar</span>
+            </span>
+          </a>
+          <p class="site-footer__tagline">Real taste. Zero sugar. Full stop.</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer">
+          <div>
+            <h2 class="site-footer__heading">Explore</h2>
+            <ul>
+              <li><a href="#taste">Taste</a></li>
+              <li><a href="#flavors">Flavours</a></li>
+              <li><a href="#zero">The Zeros</a></li>
+              <li><a href="#craft">Craft</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__heading">More</h2>
+            <ul>
+              <li><a href="#planet">Planet</a></li>
+              <li><a href="#moments">Moments</a></li>
+              <li><a href="#join">Get updates</a></li>
+              <li><a href="#top">Back to top</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="shell site-footer__legal">
+        <p>
+          Unofficial AI design benchmark. Not affiliated with, sponsored by, or
+          endorsed by The Coca-Cola Company. All trademarks belong to their
+          respective owners.
+        </p>
+        <p class="site-footer__credit">Built by Claude Opus 4.8 · <span data-year>2026</span></p>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

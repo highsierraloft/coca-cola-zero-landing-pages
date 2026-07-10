@@ -21,6 +21,7 @@ const publicEntries = new Set([
   'gpt-56-sol',
   'gpt-56-terra',
   'gpt-56-luna',
+  'claude-opus-4-8',
 ]);
 
 const baseHeaders = {
