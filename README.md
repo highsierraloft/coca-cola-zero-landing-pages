@@ -1,6 +1,6 @@
 # Coca-Cola Zero AI Landing Page Benchmark
 
-Six standalone Coca-Cola Zero advertisements are collected under one comparison gallery for side-by-side review.
+Nine standalone Coca-Cola Zero advertisements are collected under one comparison gallery for side-by-side review.
 
 Live comparison: <https://highsierraloft.github.io/coca-cola-zero-landing-pages/>
 
@@ -14,12 +14,17 @@ Live comparison: <https://highsierraloft.github.io/coca-cola-zero-landing-pages/
 | GPT-5.6 Sol / OpenAI | Ultra | `/gpt-56-sol/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-sol/> |
 | GPT-5.6 Terra / OpenAI | Ultra | `/gpt-56-terra/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-terra/> |
 | GPT-5.6 Luna / OpenAI | Max | `/gpt-56-luna/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/gpt-56-luna/> |
+| Claude Sonnet 5 / Anthropic | Extra-high | `/claude-sonnet-5/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/claude-sonnet-5/> |
+| Claude Opus 4.8 / Anthropic | Max | `/claude-opus-4-8/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/claude-opus-4-8/> |
+| Claude Fable 5 / Anthropic | Max | `/claude-fable-5/` | <https://highsierraloft.github.io/coca-cola-zero-landing-pages/claude-fable-5/> |
 
 ## GPT-5.6 benchmark prompt
 
 > No skills are allowed. Create a beautiful landing page for Coca-Cola Zero using only plain AI. It can use custom design libraries. It must have at least five sections, with the hero section on top.
 
 All three GPT-5.6 runs received the same prompt and the same operational wrapper, each in its own isolated folder. Sol and Terra's autonomous helpers remained on the same model and reasoning effort as their respective parent runs; Luna used no autonomous helpers. No run reused a sibling result, and the orchestration layer made no design edits.
+
+The identical prompt was later given to three Claude models (Anthropic) as a separate benchmark round: Sonnet 5, Opus 4.8, and Fable 5, in ascending capability tier. Each built its page independently in its own isolated folder without inspecting any sibling result. Gallery and README wiring for all three was done as one consolidated follow-up step rather than by the models during the build itself, and rather than as three separately-merged, mutually-conflicting pull requests.
 
 ## Provenance
 
@@ -28,6 +33,10 @@ All three GPT-5.6 runs received the same prompt and the same operational wrapper
 - GPT-5.6 Sol: initial result `8b54c536`; follow-up fix `52e9a6d`.
 - GPT-5.6 Terra: initial result `142efbf`; follow-up fix `fa893a3`.
 - GPT-5.6 Luna: initial result `f3bf55e`; follow-up fix `00de094`.
+- Claude Sonnet 5: built on branch `feat/add-claude-sonnet-5-page` (commit `359f399`) from the same brief, in its own isolated folder with no reuse of a sibling result.
+- Claude Opus 4.8: built on branch `feat/add-claude-opis-4.8-page` (commit `610ce53`) from the same brief, in its own isolated folder with no reuse of a sibling result.
+- Claude Fable 5: built on branch `feat/add-claude-fable-5-page` from the same brief, in its own isolated folder with no reuse of a sibling result; built with effort set to Max.
+- The three Claude pages above were each merged into this branch (`feat/add-claude-pages`) from their source branch, then wired into the gallery, README, and validation scripts together in one commit, rather than as three separate PRs each editing the same lines.
 
 ## Local verification
 

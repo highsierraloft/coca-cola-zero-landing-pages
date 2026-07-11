@@ -297,6 +297,11 @@ h1 span {
   --card-wash: rgba(227, 27, 42, 0.065);
 }
 
+.result-card--claude {
+  --card-accent: #d97757;
+  --card-wash: rgba(217, 119, 87, 0.06);
+}
+
 .result-card__link {
   position: relative;
   display: flex;
