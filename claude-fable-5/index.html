@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coca-Cola Zero — All the Taste. Zero Sugar.</title>
+  <meta name="description" content="Real Coca-Cola taste with zero sugar and zero calories. Explore the Coca-Cola Zero Sugar lineup, what's inside the can, and how to serve it at exactly zero degrees.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050506">
+  <meta property="og:title" content="Coca-Cola Zero — All the Taste. Zero Sugar.">
+  <meta property="og:description" content="Zero sugar. Zero calories. 100% Coca-Cola taste. Best served at exactly zero degrees.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="preload" href="./assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/great-vibes-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Shared can artwork: one symbol, recolored per instance via --can-accent / --can-ink,
+       frost + droplets driven by --frost / --drops (used by the chill slider). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="canBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1B1C1F"/>
+        <stop offset=".5" stop-color="#101013"/>
+        <stop offset="1" stop-color="#08080A"/>
+      </linearGradient>
+      <linearGradient id="cylShade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".62"/>
+        <stop offset=".08" stop-color="#000" stop-opacity=".26"/>
+        <stop offset=".2" stop-color="#fff" stop-opacity=".17"/>
+        <stop offset=".3" stop-color="#fff" stop-opacity=".05"/>
+        <stop offset=".52" stop-color="#000" stop-opacity="0"/>
+        <stop offset=".8" stop-color="#000" stop-opacity=".22"/>
+        <stop offset=".94" stop-color="#000" stop-opacity=".5"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".66"/>
+      </linearGradient>
+      <linearGradient id="lidGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#5C5F66"/>
+        <stop offset=".22" stop-color="#C8CCD2"/>
+        <stop offset=".5" stop-color="#84888F"/>
+        <stop offset=".78" stop-color="#B9BDC4"/>
+        <stop offset="1" stop-color="#4E5157"/>
+      </linearGradient>
+      <radialGradient id="lidInner" cx=".5" cy=".42" r=".65">
+        <stop offset="0" stop-color="#9DA1A8"/>
+        <stop offset=".7" stop-color="#6E7278"/>
+        <stop offset="1" stop-color="#3F4247"/>
+      </radialGradient>
+      <radialGradient id="discShade" cx=".34" cy=".28" r=".95">
+        <stop offset="0" stop-color="#fff" stop-opacity=".3"/>
+        <stop offset=".42" stop-color="#fff" stop-opacity=".04"/>
+        <stop offset=".82" stop-color="#000" stop-opacity=".12"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".34"/>
+      </radialGradient>
+      <radialGradient id="dropGrad" cx=".35" cy=".3" r=".8">
+        <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+        <stop offset=".45" stop-color="#fff" stop-opacity=".28"/>
+        <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="frostGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#EAF6FF" stop-opacity=".55"/>
+        <stop offset=".45" stop-color="#DFF1FF" stop-opacity=".26"/>
+        <stop offset="1" stop-color="#EAF6FF" stop-opacity=".5"/>
+      </linearGradient>
+      <linearGradient id="baseGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#101114"/>
+        <stop offset=".5" stop-color="#26272B"/>
+        <stop offset="1" stop-color="#0C0D10"/>
+      </linearGradient>
+
+      <symbol id="zero-can" viewBox="0 0 240 480">
+        <!-- silhouette -->
+        <path d="M46 66 C40 82 32 100 32 124 L32 384 C32 402 38 416 50 426 C60 434 84 440 120 440 C156 440 180 434 190 426 C202 416 208 402 208 384 L208 124 C208 100 200 82 194 66 C170 78 70 78 46 66 Z" fill="url(#canBody)"/>
+        <!-- red disc -->
+        <circle cx="120" cy="206" r="66" fill="var(--can-accent, #F40009)"/>
+        <circle cx="120" cy="206" r="66" fill="url(#discShade)"/>
+        <text x="120" y="216" text-anchor="middle" font-family="'Great Vibes','Snell Roundhand',cursive" font-size="35" fill="var(--can-ink, #fff)" transform="rotate(-9 120 206)">Coca-Cola</text>
+        <!-- wordmark under the disc -->
+        <text x="120" y="322" text-anchor="middle" font-family="'Anton',Impact,sans-serif" font-size="31" letter-spacing="5" fill="#fff">ZERO</text>
+        <text x="120" y="348" text-anchor="middle" font-family="'Anton',Impact,sans-serif" font-size="14" letter-spacing="6" fill="var(--can-accent, #F40009)">SUGAR</text>
+        <text x="121" y="412" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#fff" opacity=".42">330 ml</text>
+        <!-- frost sheen + droplets (opacity driven by CSS custom properties) -->
+        <path d="M46 66 C40 82 32 100 32 124 L32 384 C32 402 38 416 50 426 C60 434 84 440 120 440 C156 440 180 434 190 426 C202 416 208 402 208 384 L208 124 C208 100 200 82 194 66 C170 78 70 78 46 66 Z" fill="url(#frostGrad)" style="opacity: var(--frost, 0)"/>
+        <g style="opacity: var(--drops, 0)">
+          <circle cx="64" cy="150" r="5" fill="url(#dropGrad)"/>
+          <circle cx="180" cy="128" r="3.6" fill="url(#dropGrad)"/>
+          <circle cx="52" cy="250" r="4.2" fill="url(#dropGrad)"/>
+          <circle cx="192" cy="242" r="5.4" fill="url(#dropGrad)"/>
+          <circle cx="74" cy="330" r="3.4" fill="url(#dropGrad)"/>
+          <circle cx="170" cy="356" r="4.6" fill="url(#dropGrad)"/>
+          <circle cx="118" cy="392" r="3" fill="url(#dropGrad)"/>
+          <circle cx="150" cy="108" r="2.6" fill="url(#dropGrad)"/>
+          <circle cx="88" cy="104" r="3.2" fill="url(#dropGrad)"/>
+          <ellipse cx="60" cy="196" rx="2.4" ry="5" fill="url(#dropGrad)"/>
+          <ellipse cx="186" cy="308" rx="2.6" ry="6" fill="url(#dropGrad)"/>
+        </g>
+        <!-- cylinder light -->
+        <path d="M46 66 C40 82 32 100 32 124 L32 384 C32 402 38 416 50 426 C60 434 84 440 120 440 C156 440 180 434 190 426 C202 416 208 402 208 384 L208 124 C208 100 200 82 194 66 C170 78 70 78 46 66 Z" fill="url(#cylShade)"/>
+        <!-- base + lid -->
+        <path d="M78 438 C92 441 148 441 162 438 C150 446 90 446 78 438 Z" fill="url(#baseGrad)"/>
+        <ellipse cx="120" cy="66" rx="74" ry="14" fill="url(#lidGrad)"/>
+        <ellipse cx="120" cy="66.5" rx="63" ry="10.5" fill="url(#lidInner)"/>
+        <ellipse cx="120" cy="66.5" rx="20" ry="4.4" fill="#2C2E32" opacity=".8"/>
+        <ellipse cx="112" cy="66" rx="7" ry="2.6" fill="#C9CDD3"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Coca-Cola Zero — back to top">
+        <span class="brand-disc" aria-hidden="true"></span>
+        <span class="brand-script" aria-hidden="true">Coca-Cola</span>
+        <span class="brand-zero" aria-hidden="true">Zero</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+          <span class="sr-only">Menu</span>
+          <span class="nav-bar" aria-hidden="true"></span>
+          <span class="nav-bar" aria-hidden="true"></span>
+          <span class="nav-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#taste">Taste</a></li>
+          <li><a href="#lineup">Lineup</a></li>
+          <li><a href="#inside">Inside</a></li>
+          <li><a href="#chill">Chill</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li class="nav-cta"><a class="btn btn-red btn-sm" href="#get">Get yours</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1 · HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <canvas class="bubbles" id="bubbles" aria-hidden="true"></canvas>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker reveal">Coca-Cola Zero Sugar</p>
+          <h1 id="hero-title" class="reveal" style="--d:.07s">All the taste.<br><span class="h1-zero">Zero sugar.</span></h1>
+          <p class="lead reveal" style="--d:.14s">The deep, crisp, unmistakable taste of Coca-Cola — with zero sugar and zero calories. Best enjoyed loud, ice-cold, and slightly too fast.</p>
+          <div class="hero-actions reveal" style="--d:.21s">
+            <a class="btn btn-red" href="#lineup">Explore the lineup</a>
+            <a class="btn btn-ghost" href="#inside">See what&rsquo;s inside</a>
+          </div>
+          <dl class="hero-stats reveal" style="--d:.28s">
+            <div class="stat">
+              <dt>Sugar</dt>
+              <dd><span class="stat-num" data-from="35" data-to="0">0</span><span class="stat-unit">g</span></dd>
+            </div>
+            <div class="stat">
+              <dt>Calories</dt>
+              <dd><span class="stat-num" data-from="139" data-to="0">0</span><span class="stat-unit">kcal</span></dd>
+            </div>
+            <div class="stat">
+              <dt>Coca-Cola taste</dt>
+              <dd><span class="stat-num" data-from="0" data-to="100">100</span><span class="stat-unit">%</span></dd>
+            </div>
+          </dl>
+          <p class="stats-note reveal" style="--d:.34s">Per 330&nbsp;ml can, versus Coca-Cola Original.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <span class="hero-zero-word">ZERO</span>
+          <div class="disc-glow"></div>
+          <div class="can-float">
+            <svg class="can can--hero" viewBox="0 0 240 480"><use href="#zero-can"/></svg>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#taste" aria-label="Scroll down to the next section"><span aria-hidden="true"></span></a>
+    </section>
+
+    <!-- ribbon divider -->
+    <div class="marquee-belt" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee-track">
+        <div class="marquee-run">
+          <span>Zero sugar</span><i>●</i><span>Zero calories</span><i>●</i><span>100% Coca-Cola taste</span><i>●</i><span>Serve at zero degrees</span><i>●</i>
+        </div>
+        <div class="marquee-run">
+          <span>Zero sugar</span><i>●</i><span>Zero calories</span><i>●</i><span>100% Coca-Cola taste</span><i>●</i><span>Serve at zero degrees</span><i>●</i>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- ============ 2 · WHY ZERO ============ -->
+    <section class="section" id="taste" aria-labelledby="taste-title">
+      <div class="wrap">
+        <p class="kicker reveal">Why zero</p>
+        <h2 id="taste-title" class="reveal" style="--d:.06s">Everything you love.<br>Nothing you don&rsquo;t.</h2>
+        <p class="section-lead reveal" style="--d:.12s">We didn&rsquo;t make a lighter cola. We made Coca-Cola — then subtracted the sugar and kept everything that matters.</p>
+        <div class="pillars">
+          <article class="card pillar reveal" style="--d:.05s">
+            <p class="pillar-num" aria-hidden="true">0<span>g</span></p>
+            <h3>Zero sugar</h3>
+            <p>Not &ldquo;less.&rdquo; Not &ldquo;reduced.&rdquo; A clean, round, absolute zero grams of sugar in every can.</p>
+          </article>
+          <article class="card pillar reveal" style="--d:.15s">
+            <p class="pillar-num" aria-hidden="true">0<span>kcal</span></p>
+            <h3>Zero calories</h3>
+            <p>A full-flavor cola that rounds to nothing. All of the flavor math, none of the calorie math.</p>
+          </article>
+          <article class="card pillar reveal" style="--d:.25s">
+            <p class="pillar-num pillar-num--red" aria-hidden="true">100<span>%</span></p>
+            <h3>Zero compromise</h3>
+            <p>The same deep caramel bite, bright citrus spark and lively fizz of the original — recrafted, not watered down.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3 · THE LINEUP ============ -->
+    <section class="section section-alt" id="lineup" aria-labelledby="lineup-title">
+      <div class="wrap">
+        <p class="kicker reveal">The lineup</p>
+        <h2 id="lineup-title" class="reveal" style="--d:.06s">Pick your zero.</h2>
+        <p class="section-lead reveal" style="--d:.12s">Four ways in. One rule: zero sugar, always.</p>
+        <div class="lineup-grid">
+          <div class="flavor-stage card reveal" id="flavor-stage" style="--accent:#F40009; --can-ink:#fff">
+            <div class="stage-glow" aria-hidden="true"></div>
+            <div class="stage-can" aria-hidden="true">
+              <svg class="can can--stage" viewBox="0 0 240 480"><use href="#zero-can"/></svg>
+            </div>
+            <div class="stage-info">
+              <h3 class="stage-name" id="flavor-name">Zero Sugar</h3>
+              <p class="stage-tag" id="flavor-tag">The icon, minus the sugar.</p>
+              <ul class="chips" id="flavor-notes" aria-label="Tasting notes">
+                <li>Deep caramel</li><li>Citrus spark</li><li>Vanilla-spice</li>
+              </ul>
+              <p class="stage-sizes" id="flavor-sizes">330&nbsp;ml &middot; 500&nbsp;ml &middot; 1&nbsp;L &middot; 1.5&nbsp;L</p>
+            </div>
+          </div>
+          <div class="flavor-list reveal" style="--d:.12s" role="group" aria-label="Choose a flavor">
+            <button class="flavor-btn is-active" type="button" aria-pressed="true" data-flavor="classic">
+              <span class="swatch" style="--sw:#F40009" aria-hidden="true"></span>
+              <span class="flavor-btn-text"><strong>Zero Sugar</strong><small>The icon, minus the sugar</small></span>
+              <span class="flavor-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="flavor-btn" type="button" aria-pressed="false" data-flavor="cherry">
+              <span class="swatch" style="--sw:#D81B60" aria-hidden="true"></span>
+              <span class="flavor-btn-text"><strong>Zero Sugar Cherry</strong><small>Dark cherry over crisp cola</small></span>
+              <span class="flavor-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="flavor-btn" type="button" aria-pressed="false" data-flavor="vanilla">
+              <span class="swatch" style="--sw:#EAD9B0" aria-hidden="true"></span>
+              <span class="flavor-btn-text"><strong>Zero Sugar Vanilla</strong><small>Smooth and creamy, still zero</small></span>
+              <span class="flavor-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="flavor-btn" type="button" aria-pressed="false" data-flavor="decaf">
+              <span class="swatch" style="--sw:#B08D2E" aria-hidden="true"></span>
+              <span class="flavor-btn-text"><strong>Zero Sugar Caffeine-Free</strong><small>Full taste, for the late shift</small></span>
+              <span class="flavor-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <p class="lineup-note">Every single one: <strong>0&nbsp;g sugar &middot; 0&nbsp;kcal.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4 · INSIDE THE CAN ============ -->
+    <section class="section" id="inside" aria-labelledby="inside-title">
+      <div class="wrap inside-grid">
+        <div class="inside-copy">
+          <p class="kicker reveal">Inside the can</p>
+          <h2 id="inside-title" class="reveal" style="--d:.06s">An honest label.</h2>
+          <p class="section-lead reveal" style="--d:.12s">How does zero sugar taste this much like Coca-Cola? A blend of sweeteners tuned to the exact profile of the original — the bitter edge, the bright acidity, the caramel depth — and checked by tasting panels until nobody could tell us apart.</p>
+          <ul class="chips chips-lg reveal" style="--d:.18s" aria-label="Ingredients">
+            <li>Carbonated water</li><li>Caramel color</li><li>Phosphoric acid</li><li>Sweeteners</li><li>Natural flavors</li><li>Caffeine</li>
+          </ul>
+          <p class="fine-print reveal" style="--d:.24s">Sweetened with aspartame and acesulfame&nbsp;K. Contains a source of phenylalanine.</p>
+        </div>
+        <aside class="nutrition reveal" style="--d:.15s" aria-label="Nutrition facts per 330 ml can">
+          <h3>Nutrition Facts</h3>
+          <p class="nutri-serv">Per 330&nbsp;ml can</p>
+          <ul>
+            <li><span>Calories</span><strong>0</strong></li>
+            <li><span>Total sugars</span><strong>0&nbsp;g</strong></li>
+            <li><span>Total fat</span><strong>0&nbsp;g</strong></li>
+            <li><span>Sodium</span><strong>40&nbsp;mg</strong></li>
+            <li><span>Caffeine</span><strong>32&nbsp;mg</strong></li>
+          </ul>
+          <p class="nutri-foot">Caffeine-free version: same numbers, minus the 32&nbsp;mg.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ 5 · SERVE AT ZERO ============ -->
+    <section class="section section-alt" id="chill" aria-labelledby="chill-title">
+      <div class="wrap chill-grid">
+        <div class="chill-visual" aria-hidden="true">
+          <div class="chill-glow"></div>
+          <svg class="can can--chill" id="chill-can" viewBox="0 0 240 480"><use href="#zero-can"/></svg>
+        </div>
+        <div class="chill-controls">
+          <p class="kicker reveal">Serving ritual</p>
+          <h2 id="chill-title" class="reveal" style="--d:.06s">Best at zero degrees.</h2>
+          <p class="section-lead reveal" style="--d:.12s">Cola physics: the colder the liquid, the tighter it holds its fizz. Every degree down sharpens the bite. Drag the dial and chase the perfect zero.</p>
+          <div class="temp-panel reveal" style="--d:.18s">
+            <p class="temp-readout"><output id="temp-out" for="temp">8</output><span class="temp-unit">&deg;C</span></p>
+            <label class="temp-label" for="temp">Fridge dial — drag toward zero</label>
+            <input class="temp-range" type="range" id="temp" min="0" max="24" step="1" value="8">
+            <div class="temp-scale"><span>0&deg; crisp</span><span>24&deg; warm</span></div>
+            <p class="temp-tier" id="temp-tier" aria-live="polite">Fridge standard. Crisp enough to hear.</p>
+            <p class="perfect-badge" id="perfect-badge" hidden><span aria-hidden="true">&#10052;</span> Perfect serve unlocked</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6 · VOICES ============ -->
+    <section class="section" id="voices" aria-labelledby="voices-title">
+      <div class="wrap">
+        <p class="kicker reveal">Word on the street</p>
+        <h2 id="voices-title" class="reveal" style="--d:.06s">Zero regrets.</h2>
+        <div class="voices-grid">
+          <figure class="card voice reveal" style="--d:.05s">
+            <span class="voice-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote><p>I ran a blind taste test against the original. I lost. Happily.</p></blockquote>
+            <figcaption>Maya &middot; Berlin</figcaption>
+          </figure>
+          <figure class="card voice voice-raised reveal" style="--d:.15s">
+            <span class="voice-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote><p>The 3&nbsp;p.m. can is a load-bearing part of my day.</p></blockquote>
+            <figcaption>Andr&eacute; &middot; Lisbon</figcaption>
+          </figure>
+          <figure class="card voice reveal" style="--d:.25s">
+            <span class="voice-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote><p>Switched years ago. My taste buds never filed a complaint.</p></blockquote>
+            <figcaption>Priya &middot; London</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7 · FAQ ============ -->
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="wrap wrap-narrow">
+        <p class="kicker reveal">Straight answers</p>
+        <h2 id="faq-title" class="reveal" style="--d:.06s">Zero fine print.</h2>
+        <div class="faq-list reveal" style="--d:.12s">
+          <details>
+            <summary>Does it really taste like original Coca-Cola?<span class="faq-icon" aria-hidden="true"></span></summary>
+            <p>That&rsquo;s the whole brief. Zero Sugar is built to match the original&rsquo;s taste profile — the caramel depth, the citrus top notes, the bite. Most people need a second sip to tell. Many never do.</p>
+          </details>
+          <details>
+            <summary>Is it actually zero sugar, or just &ldquo;low&rdquo;?<span class="faq-icon" aria-hidden="true"></span></summary>
+            <p>Actually zero: 0&nbsp;g of sugar and 0 calories per 330&nbsp;ml can. Sweetness comes from a blend of aspartame and acesulfame&nbsp;K instead of sugar.</p>
+          </details>
+          <details>
+            <summary>How much caffeine is in a can?<span class="faq-icon" aria-hidden="true"></span></summary>
+            <p>About 32&nbsp;mg per 330&nbsp;ml — roughly a third of a typical cup of coffee. Prefer none at all? The Caffeine-Free version keeps the taste and drops the caffeine.</p>
+          </details>
+          <details>
+            <summary>What&rsquo;s the difference between Zero Sugar and Diet?<span class="faq-icon" aria-hidden="true"></span></summary>
+            <p>Zero Sugar chases the taste of original Coca-Cola as closely as possible. Diet Coke is its own thing — a lighter, crisper taste with its own fan club. Both have zero sugar.</p>
+          </details>
+          <details>
+            <summary>Where can I get it?<span class="faq-icon" aria-hidden="true"></span></summary>
+            <p>Anywhere drinks are sold cold: supermarkets, kiosks, vending machines, and that one fridge at the back of every good party.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8 · CTA ============ -->
+    <section class="cta-band" id="get" aria-labelledby="get-title">
+      <div class="wrap">
+        <h2 id="get-title" class="reveal">Zero hesitation.</h2>
+        <p class="cta-lead reveal" style="--d:.08s">Grab one wherever drinks are cold — or leave your email and we&rsquo;ll nudge you when new flavors drop.</p>
+        <form class="notify reveal" style="--d:.16s" id="notify" novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-black" type="submit">Keep me posted</button>
+        </form>
+        <p class="form-err" id="form-err" hidden>That email doesn&rsquo;t look right — give it one more try.</p>
+        <p class="form-done" id="form-done" hidden>You&rsquo;re on the list. Stay cold. <span aria-hidden="true">&#10052;</span> <small>(Demo page — nothing was actually sent.)</small></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <p class="brand footer-wordmark" aria-hidden="true">
+          <span class="brand-disc"></span>
+          <span class="brand-script">Coca-Cola</span>
+          <span class="brand-zero">Zero</span>
+        </p>
+        <p class="footer-tag">All the taste. Zero sugar.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#taste">Taste</a>
+        <a href="#lineup">Lineup</a>
+        <a href="#inside">Inside</a>
+        <a href="#chill">Chill</a>
+        <a href="#faq">FAQ</a>
+        <a href="#get">Get yours</a>
+      </nav>
+      <div class="footer-legal">
+        <p>&copy; <span id="year">2026</span> — An unofficial concept page built by Claude (Fable&nbsp;5) for an AI design benchmark. Not affiliated with or endorsed by The Coca-Cola Company. Coca-Cola is a trademark of its respective owner.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js" defer></script>
+</body>
+</html>
