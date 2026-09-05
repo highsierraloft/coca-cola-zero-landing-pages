@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 620" role="img" aria-label="Coca-Cola Orange Vanilla Zero can">
+  <defs>
+    <linearGradient id="or-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5a3218"/>
+      <stop offset="20%" stop-color="#1e1008"/>
+      <stop offset="50%" stop-color="#2c180c"/>
+      <stop offset="80%" stop-color="#0e0804"/>
+      <stop offset="100%" stop-color="#6a3c1c"/>
+    </linearGradient>
+    <linearGradient id="or-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="42%" stop-color="#ffd0a0" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="140" cy="56" rx="78" ry="18" fill="#d0d0d0"/>
+  <rect x="62" y="56" width="156" height="22" fill="#b8b8b8"/>
+  <ellipse cx="140" cy="78" rx="78" ry="16" fill="#9a9a9a"/>
+  <path d="M68 78h144c6 18 8 40 8 70v360c0 42-10 70-18 78H78c-8-8-18-36-18-78V148c0-30 2-52 8-70z" fill="url(#or-metal)"/>
+  <path d="M68 78h144c6 18 8 40 8 70v360c0 42-10 70-18 78H78c-8-8-18-36-18-78V148c0-30 2-52 8-70z" fill="url(#or-shine)"/>
+  <text x="140" y="236" text-anchor="middle" fill="#ffb060" font-family="Georgia, serif" font-style="italic" font-size="30" font-weight="700">Coca-Cola</text>
+  <text x="140" y="278" text-anchor="middle" fill="#fff4e8" font-family="Arial Black, sans-serif" font-size="28" letter-spacing="1">ORANGE</text>
+  <text x="140" y="308" text-anchor="middle" fill="#fff4e8" font-family="Arial Black, sans-serif" font-size="22" letter-spacing="2">VANILLA</text>
+  <text x="140" y="338" text-anchor="middle" fill="#ffc080" font-family="Arial, sans-serif" font-size="14" letter-spacing="7">ZERO SUGAR</text>
+  <ellipse cx="140" cy="586" rx="80" ry="18" fill="#bdbdbd"/>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 620" role="img" aria-label="Coca-Cola Cherry Zero can">
+  <defs>
+    <linearGradient id="ch-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5a1a22"/>
+      <stop offset="18%" stop-color="#2a0b10"/>
+      <stop offset="50%" stop-color="#3a1016"/>
+      <stop offset="80%" stop-color="#140508"/>
+      <stop offset="100%" stop-color="#6a2430"/>
+    </linearGradient>
+    <linearGradient id="ch-rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d8d8d8"/>
+      <stop offset="100%" stop-color="#8a8a8a"/>
+    </linearGradient>
+    <linearGradient id="ch-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#fff" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="140" cy="56" rx="78" ry="18" fill="#d0d0d0"/>
+  <rect x="62" y="56" width="156" height="22" fill="#b8b8b8"/>
+  <ellipse cx="140" cy="78" rx="78" ry="16" fill="#9a9a9a"/>
+  <path d="M68 78h144c6 18 8 40 8 70v360c0 42-10 70-18 78H78c-8-8-18-36-18-78V148c0-30 2-52 8-70z" fill="url(#ch-metal)"/>
+  <path d="M68 78h144c6 18 8 40 8 70v360c0 42-10 70-18 78H78c-8-8-18-36-18-78V148c0-30 2-52 8-70z" fill="url(#ch-shine)"/>
+  <text x="140" y="248" text-anchor="middle" fill="#ffdce3" font-family="Georgia, serif" font-style="italic" font-size="32" font-weight="700">Coca-Cola</text>
+  <text x="140" y="292" text-anchor="middle" fill="#fff" font-family="Arial Black, sans-serif" font-size="38" letter-spacing="3">CHERRY</text>
+  <text x="140" y="322" text-anchor="middle" fill="#ffb3c0" font-family="Arial, sans-serif" font-size="14" letter-spacing="7">ZERO SUGAR</text>
+  <circle cx="140" cy="368" r="16" fill="#E32227"/>
+  <ellipse cx="140" cy="586" rx="80" ry="18" fill="url(#ch-rim)"/>
+</svg>

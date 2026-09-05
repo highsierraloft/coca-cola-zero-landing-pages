@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coca-Cola Zero Sugar — Real Coke Taste, Zero Sugar</title>
+  <meta name="description" content="Coca-Cola Zero Sugar. The real taste of Coca-Cola with zero sugar. Bold, crisp, unmistakable." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,800;0,900;1,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="Coca-Cola Zero Sugar home">
+      <svg class="nav__wordmark" viewBox="0 0 220 34" role="img" aria-label="Coca-Cola Zero Sugar">
+        <text x="0" y="25" class="wordmark-text">Coca&#8209;Cola</text>
+        <text x="148" y="25" class="wordmark-zero">ZERO</text>
+      </svg>
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#taste">Taste</a>
+      <a href="#nutrition">Nutrition</a>
+      <a href="#lineup">Lineup</a>
+      <a href="#moments">Moments</a>
+      <a class="nav__cta" href="#find">Find a Can</a>
+    </nav>
+  </header>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__glow hero__glow--red"></div>
+      <div class="hero__glow hero__glow--white"></div>
+      <div class="hero__grid"></div>
+    </div>
+
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <p class="hero__eyebrow reveal">Coca&#8209;Cola Zero Sugar</p>
+        <h1 class="hero__title">
+          <span class="hero__line reveal">REAL&nbsp;COKE</span>
+          <span class="hero__line reveal">TASTE.</span>
+          <span class="hero__line hero__line--red reveal">ZERO&nbsp;SUGAR.</span>
+        </h1>
+        <p class="hero__sub reveal">Bold. Crisp. Unmistakable. Everything you love about
+          Coca&#8209;Cola — with absolutely nothing you don’t.</p>
+        <div class="hero__actions reveal">
+          <a class="btn btn--red" href="#find">Find a Can</a>
+          <a class="btn btn--ghost" href="#taste">Taste the Story</a>
+        </div>
+        <ul class="hero__stats reveal">
+          <li><strong>0</strong><span>g sugar</span></li>
+          <li><strong>0</strong><span>calories</span></li>
+          <li><strong>100%</strong><span>Coke taste</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__stage" aria-hidden="true">
+        <div class="can" id="heroCan">
+          <div class="can__body">
+            <div class="can__shine"></div>
+            <svg class="can__label" viewBox="0 0 200 400" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="canGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0"   stop-color="#050505"/>
+                  <stop offset="0.18" stop-color="#2a2a2c"/>
+                  <stop offset="0.38" stop-color="#3f3f42"/>
+                  <stop offset="0.5" stop-color="#1a1a1c"/>
+                  <stop offset="0.7" stop-color="#0b0b0c"/>
+                  <stop offset="1"   stop-color="#000000"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="200" height="400" fill="url(#canGrad)"/>
+              <rect x="0" y="118" width="200" height="6" fill="#f40009"/>
+              <rect x="0" y="292" width="200" height="6" fill="#f40009"/>
+              <text x="100" y="185" text-anchor="middle" class="can-text-coke">Coca&#8209;Cola</text>
+              <text x="100" y="238" text-anchor="middle" class="can-text-zero">ZERO</text>
+              <text x="100" y="268" text-anchor="middle" class="can-text-sugar">SUGAR</text>
+              <text x="100" y="350" text-anchor="middle" class="can-text-small">ZERO CALORIES · GREAT TASTE</text>
+            </svg>
+          </div>
+          <div class="can__top"></div>
+          <div class="can__bottom"></div>
+        </div>
+        <div class="hero__shadow"></div>
+        <div class="hero__ring"></div>
+      </div>
+    </div>
+
+    <div class="hero__marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>ZERO SUGAR&nbsp;·&nbsp;ZERO CALORIES&nbsp;·&nbsp;REAL COKE TASTE&nbsp;·&nbsp;</span>
+        <span>ZERO SUGAR&nbsp;·&nbsp;ZERO CALORIES&nbsp;·&nbsp;REAL COKE TASTE&nbsp;·&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. TASTE ============ -->
+  <section class="taste section" id="taste">
+    <div class="section__head reveal">
+      <span class="section__index">01</span>
+      <h2 class="section__title">The taste you know.<br/><em>Nothing you don’t.</em></h2>
+    </div>
+    <div class="taste__grid">
+      <article class="taste__card reveal">
+        <div class="taste__icon" aria-hidden="true">✳</div>
+        <h3>Signature Flavor</h3>
+        <p>The same secret blend crafted in 1886 — that unmistakable Coca&#8209;Cola sparkle, now without a single gram of sugar.</p>
+      </article>
+      <article class="taste__card reveal">
+        <div class="taste__icon" aria-hidden="true">◈</div>
+        <h3>Crisp Bite</h3>
+        <p>Fine, electric carbonation that snaps on the tongue and finishes clean. No syrupy aftertaste. Ever.</p>
+      </article>
+      <article class="taste__card reveal">
+        <div class="taste__icon" aria-hidden="true">❋</div>
+        <h3>Ice-Cold Confidence</h3>
+        <p>Best served at 3°C. Crack the tab, hear the hiss, and let the bubbles do the talking.</p>
+      </article>
+    </div>
+    <div class="taste__banner reveal">
+      <p>“It tastes like <strong>Coke</strong> — because it <strong>is</strong> Coke. Just with zero sugar.”</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. NUTRITION ============ -->
+  <section class="nutrition section" id="nutrition">
+    <div class="section__head reveal">
+      <span class="section__index">02</span>
+      <h2 class="section__title">What’s inside?<br/><em>Almost nothing. In the best way.</em></h2>
+    </div>
+    <div class="nutrition__wrap">
+      <div class="nutrition__facts reveal" role="table" aria-label="Nutrition facts per 330 ml">
+        <header>
+          <h3>Nutrition Facts</h3>
+          <p>Per 330&nbsp;ml can</p>
+        </header>
+        <div class="nf-row nf-row--big"><span>Energy</span><span>0 kcal</span></div>
+        <div class="nf-row"><span>Total Fat</span><span>0 g</span></div>
+        <div class="nf-row"><span>Sodium</span><span>0 mg</span></div>
+        <div class="nf-row nf-row--big"><span>Sugars</span><span>0 g</span></div>
+        <div class="nf-row"><span>Protein</span><span>0 g</span></div>
+        <footer>
+          <p>Ingredients: carbonated water, colour (caramel E150d), sweeteners (aspartame, acesulfame&nbsp;K), natural flavourings including caffeine, phosphoric acid, citric acid.</p>
+        </footer>
+      </div>
+      <div class="nutrition__copy reveal">
+        <h3>Zero means zero.</h3>
+        <p>We spent years perfecting a recipe that keeps the full Coca&#8209;Cola character while removing the sugar completely — no compromise, no half-measures.</p>
+        <ul class="nutrition__list">
+          <li><span class="tick" aria-hidden="true">✓</span> Sweetened with a precise blend of aspartame &amp; acesulfame&nbsp;K</li>
+          <li><span class="tick" aria-hidden="true">✓</span> Same caffeine kick as classic Coke</li>
+          <li><span class="tick" aria-hidden="true">✓</span> 100% recyclable aluminium can</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. LINEUP ============ -->
+  <section class="lineup section" id="lineup">
+    <div class="section__head reveal">
+      <span class="section__index">03</span>
+      <h2 class="section__title">Pick your <em>zero.</em></h2>
+    </div>
+    <div class="lineup__grid">
+      <article class="lineup__card reveal" data-variant="classic">
+        <div class="mini-can mini-can--classic" aria-hidden="true"><span>ZERO</span></div>
+        <h3>Coca&#8209;Cola Zero Sugar</h3>
+        <p>The icon. Black can, red stripe, endless refreshment.</p>
+        <a class="btn btn--small" href="#find">Find it</a>
+      </article>
+      <article class="lineup__card reveal" data-variant="caffeine">
+        <div class="mini-can mini-can--caffeine" aria-hidden="true"><span>ZERO<br/>CAFFEINE</span></div>
+        <h3>Zero Sugar Zero Caffeine</h3>
+        <p>All the taste, none of the buzz. Your late-night hero.</p>
+        <a class="btn btn--small" href="#find">Find it</a>
+      </article>
+      <article class="lineup__card reveal" data-variant="cherry">
+        <div class="mini-can mini-can--cherry" aria-hidden="true"><span>CHERRY<br/>ZERO</span></div>
+        <h3>Zero Sugar Cherry</h3>
+        <p>A dark, juicy twist with a wild streak of cherry.</p>
+        <a class="btn btn--small" href="#find">Find it</a>
+      </article>
+      <article class="lineup__card reveal" data-variant="vanilla">
+        <div class="mini-can mini-can--vanilla" aria-hidden="true"><span>VANILLA<br/>ZERO</span></div>
+        <h3>Zero Sugar Vanilla</h3>
+        <p>Smooth, creamy vanilla folded into crisp cola.</p>
+        <a class="btn btn--small" href="#find">Find it</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 5. MOMENTS ============ -->
+  <section class="moments section" id="moments">
+    <div class="section__head reveal">
+      <span class="section__index">04</span>
+      <h2 class="section__title">Made for the <em>moment.</em></h2>
+    </div>
+    <div class="moments__grid">
+      <figure class="moment reveal"><span class="moment__tag">3:00&nbsp;PM</span><figcaption>The afternoon reset</figcaption></figure>
+      <figure class="moment reveal"><span class="moment__tag">8:00&nbsp;PM</span><figcaption>Game night fuel</figcaption></figure>
+      <figure class="moment reveal"><span class="moment__tag">12:00&nbsp;AM</span><figcaption>Midnight mixtape</figcaption></figure>
+      <figure class="moment reveal"><span class="moment__tag">Anytime</span><figcaption>Zero guilt, all taste</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ 6. CTA / FIND ============ -->
+  <section class="find section" id="find">
+    <div class="find__inner reveal">
+      <h2>Thirsty yet?</h2>
+      <p>Coca&#8209;Cola Zero Sugar is chilling in fridges everywhere. Grab one, crack it open, and taste the zero.</p>
+      <form class="find__form" id="notifyForm" novalidate>
+        <label class="visually-hidden" for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+        <button class="btn btn--red" type="submit">Notify Me</button>
+      </form>
+      <p class="find__note" id="formNote" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <svg class="footer__wordmark" viewBox="0 0 220 34" role="img" aria-label="Coca-Cola Zero Sugar">
+        <text x="0" y="25" class="wordmark-text">Coca&#8209;Cola</text>
+        <text x="148" y="25" class="wordmark-zero">ZERO</text>
+      </svg>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#taste">Taste</a>
+        <a href="#nutrition">Nutrition</a>
+        <a href="#lineup">Lineup</a>
+        <a href="#moments">Moments</a>
+      </nav>
+      <p class="footer__legal">This is a fan-made concept page for demonstration purposes only.
+        Coca&#8209;Cola and Coke are registered trademarks of The Coca&#8209;Cola Company.
+        Enjoy responsibly. Serve ice-cold.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

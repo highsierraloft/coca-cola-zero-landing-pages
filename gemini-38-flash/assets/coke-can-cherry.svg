@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cherryBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0205" />
+      <stop offset="15%" stop-color="#240510" />
+      <stop offset="30%" stop-color="#4d0a22" />
+      <stop offset="45%" stop-color="#2a0513" />
+      <stop offset="70%" stop-color="#120208" />
+      <stop offset="90%" stop-color="#3b071a" />
+      <stop offset="100%" stop-color="#0d0206" />
+    </linearGradient>
+
+    <linearGradient id="metalRimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#555" /><stop offset="20%" stop-color="#bbb" /><stop offset="35%" stop-color="#fff" /><stop offset="55%" stop-color="#888" /><stop offset="85%" stop-color="#ddd" /><stop offset="100%" stop-color="#333" />
+    </linearGradient>
+    <linearGradient id="lipGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#222" /><stop offset="25%" stop-color="#888" /><stop offset="50%" stop-color="#e0e0e0" /><stop offset="75%" stop-color="#666" /><stop offset="100%" stop-color="#1a1a1a" />
+    </linearGradient>
+    <linearGradient id="cherryBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5a001a" />
+      <stop offset="25%" stop-color="#99002e" />
+      <stop offset="45%" stop-color="#d60045" />
+      <stop offset="75%" stop-color="#a30032" />
+      <stop offset="100%" stop-color="#4a0015" />
+    </linearGradient>
+
+    <linearGradient id="specularGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.25" />
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45" />
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="cherryShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="25" flood-color="#d60045" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="15" stdDeviation="35" flood-color="#000000" flood-opacity="0.7" />
+    </filter>
+  </defs>
+
+  <g filter="url(#cherryShadow)">
+    <path d="M 120 70 Q 200 60 280 70 L 290 95 Q 200 85 110 95 Z" fill="url(#metalRimGrad)" />
+    <ellipse cx="200" cy="70" rx="80" ry="18" fill="url(#metalRimGrad)" stroke="#444" stroke-width="1.5" />
+    <ellipse cx="200" cy="69" rx="68" ry="14" fill="#666" opacity="0.6" />
+    <path d="M 188 64 Q 200 60 212 64 L 210 73 Q 200 75 190 73 Z" fill="#ccc" stroke="#777" stroke-width="1" />
+    <circle cx="200" cy="67" r="3" fill="#444" />
+    
+    <path d="M 110 95 Q 200 85 290 95 L 305 135 Q 200 125 95 135 Z" fill="url(#lipGrad)" />
+    <path d="M 95 135 Q 200 125 305 135 L 305 570 Q 200 580 95 570 Z" fill="url(#cherryBodyGrad)" />
+    <path d="M 95 135 Q 200 125 305 135 L 305 215 Q 200 205 95 215 Z" fill="url(#cherryBannerGrad)" />
+    
+    <!-- Cherry Icons representation -->
+    <circle cx="185" cy="182" r="10" fill="#ff1a53" />
+    <circle cx="205" cy="180" r="10" fill="#d60045" />
+    <path d="M 185 174 Q 195 155 212 162" fill="none" stroke="#68bb35" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M 205 172 Q 202 158 212 162" fill="none" stroke="#68bb35" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Coca-Cola Vertical Script -->
+    <g transform="translate(180, 355) rotate(-90)">
+      <text x="0" y="0" font-family="'Brush Script MT', 'Bickham Script Pro', cursive, sans-serif" font-size="58" font-weight="bold" fill="#ffffff" text-anchor="middle">
+        Coca-Cola
+      </text>
+      <path d="M -125 14 Q -40 28 35 12 Q 95 -1 130 14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <!-- Cherry Zero Sugar Badge -->
+    <g transform="translate(200, 465)">
+      <rect x="-85" y="-18" width="170" height="36" rx="18" fill="#d60045" />
+      <text x="0" y="6" font-family="'Helvetica Neue', 'Arial Black', sans-serif" font-weight="900" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+        CHERRY ZERO
+      </text>
+    </g>
+    <text x="200" y="525" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#e0a3b7" text-anchor="middle" letter-spacing="3">
+      BOLD CHERRY INFUSION • 330 mL
+    </text>
+
+    <path d="M 95 570 Q 200 580 305 570 L 290 620 Q 200 630 110 620 Z" fill="url(#lipGrad)" />
+    <ellipse cx="200" cy="620" rx="90" ry="14" fill="url(#metalRimGrad)" />
+
+    <path d="M 95 135 L 305 135 L 305 570 L 95 570 Z" fill="url(#specularGlow)" pointer-events="none" />
+    <circle cx="140" cy="260" r="3" fill="#ffffff" opacity="0.6" />
+    <circle cx="260" cy="340" r="4" fill="#ffffff" opacity="0.6" />
+    <circle cx="150" cy="430" r="3.5" fill="#ffffff" opacity="0.6" />
+  </g>
+</svg>

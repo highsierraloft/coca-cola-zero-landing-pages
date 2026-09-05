@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coca-Cola Zero Sugar — Zero Sugar. Maximum Taste.</title>
+  <meta name="description" content="Experience the refreshing taste of Coca-Cola Zero Sugar. Zero sugar, zero calories, 100% iconic Coca-Cola flavor. Best Coke Ever?">
+  <meta name="theme-color" content="#060607">
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:title" content="Coca-Cola Zero Sugar — Best Coke Ever?">
+  <meta property="og:description" content="Zero Sugar. Zero Calories. Maximum Taste. Taste the sub-zero chill.">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS via CDN with custom brand extensions -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            coke: {
+              red: '#f40009',
+              bright: '#ff1e27',
+              dark: '#a30006',
+              black: '#060607',
+              surface: '#111114',
+              card: '#16161b',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            display: ['Bebas Neue', 'Impact', 'sans-serif'],
+            sans: ['Outfit', 'system-ui', 'sans-serif'],
+            tech: ['Space Grotesk', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Bespoke Stylesheet (Relative Path for GitHub Pages subpath compatibility) -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Favicon SVG (Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23f40009'/><text x='50' y='64' font-size='42' font-family='Arial Black,sans-serif' font-weight='900' fill='white' text-anchor='middle'>0</text></svg>">
+</head>
+<body class="bg-[#060607] text-[#f5f5f7] antialiased selection:bg-red-600 selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Effervescent Bubble Canvas (Dynamic Canvas Background) -->
+  <canvas id="fizz-canvas"></canvas>
+
+  <!-- Ambient Lighting Glows -->
+  <div class="ambient-glow ambient-glow-red w-[550px] h-[550px] top-[-100px] left-1/2 -translate-x-1/2 opacity-70"></div>
+  <div class="ambient-glow ambient-glow-cold w-[400px] h-[400px] top-[400px] -left-48 opacity-40"></div>
+  <div class="ambient-glow ambient-glow-red w-[600px] h-[600px] top-[1400px] -right-48 opacity-40"></div>
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION BAR (STICKY GLASSMORPHISM)      -->
+  <!-- ========================================== -->
+  <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 py-5 px-4 sm:px-8 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-red-500 rounded-lg p-1">
+        <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-red-600/50 group-hover:scale-105 transition">
+          0
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display text-2xl tracking-wider uppercase text-white group-hover:text-red-500 transition leading-none">
+            Coca-Cola
+          </span>
+          <span class="text-[10px] tracking-[0.25em] font-bold text-red-500 uppercase leading-tight">
+            ZERO SUGAR
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide text-gray-300 glass-panel px-6 py-2.5 rounded-full border border-white/10 shadow-xl">
+        <a href="#hero" class="nav-link hover:text-white hover:text-red-400 transition">Experience</a>
+        <a href="#flavors" class="nav-link hover:text-white hover:text-red-400 transition">Flavor Lab</a>
+        <a href="#sensory" class="nav-link hover:text-white hover:text-red-400 transition">Sensory Rush</a>
+        <a href="#comparison" class="nav-link hover:text-white hover:text-red-400 transition">The Showdown</a>
+        <a href="#community" class="nav-link hover:text-white hover:text-red-400 transition">Zero Limits</a>
+        <a href="#locator" class="nav-link hover:text-white hover:text-red-400 transition">Find Cold</a>
+      </div>
+
+      <!-- Actions & Sound Controls -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Interactive Sound Synthesizer Toggle -->
+        <button id="sound-toggle-btn" class="glass-panel px-3 py-2 rounded-full flex items-center gap-2 text-xs font-semibold hover:border-red-500/50 transition cursor-pointer" title="Toggle Sound FX">
+          <div class="flex items-center h-4">
+            <span class="sound-bar active"></span>
+            <span class="sound-bar active" style="animation-delay: 0.15s"></span>
+            <span class="sound-bar active" style="animation-delay: 0.3s"></span>
+            <span class="sound-bar active" style="animation-delay: 0.45s"></span>
+          </div>
+          <span id="sound-toggle-label" class="hidden sm:inline text-gray-300">Sound: ON</span>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#flavors" class="btn-coke-primary px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase inline-flex items-center gap-2">
+          <span>Taste Zero</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button id="mobile-nav-toggle" class="md:hidden glass-panel p-2.5 rounded-xl text-gray-300 hover:text-white" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden max-w-7xl mx-auto mt-3 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-4 text-base font-semibold">
+      <a href="#hero" class="nav-link py-2 text-gray-300 hover:text-red-400 border-b border-white/5">Experience</a>
+      <a href="#flavors" class="nav-link py-2 text-gray-300 hover:text-red-400 border-b border-white/5">Flavor Lab</a>
+      <a href="#sensory" class="nav-link py-2 text-gray-300 hover:text-red-400 border-b border-white/5">Sensory Rush</a>
+      <a href="#comparison" class="nav-link py-2 text-gray-300 hover:text-red-400 border-b border-white/5">The Showdown</a>
+      <a href="#community" class="nav-link py-2 text-gray-300 hover:text-red-400 border-b border-white/5">Zero Limits</a>
+      <a href="#locator" class="nav-link py-2 text-gray-300 hover:text-red-400">Find Cold</a>
+    </div>
+  </nav>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 1: HERO SECTION (ON TOP)           -->
+  <!-- ========================================== -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 px-4 sm:px-8 flex items-center justify-center overflow-hidden">
+    <!-- Floating Sub-Zero Ice Cubes with Parallax -->
+    <div class="ice-cube ice-cube-1"></div>
+    <div class="ice-cube ice-cube-2"></div>
+    <div class="ice-cube ice-cube-3"></div>
+
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Left Column: Copy & Interactive Audio Trigger -->
+      <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+        
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-red-500/30 text-xs font-semibold text-red-400 tracking-wider uppercase shadow-lg shadow-red-950/40 animate-pulse">
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+          <span>Next Gen Refreshment • Zero Calories</span>
+        </div>
+
+        <!-- Headline -->
+        <div class="space-y-1">
+          <h2 class="text-gray-400 text-lg sm:text-2xl font-tech uppercase tracking-[0.2em]">
+            Best Coke Ever?
+          </h2>
+          <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display uppercase tracking-tight text-white leading-[0.9]">
+            ZERO SUGAR.<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-white">
+              MAXIMUM TASTE.
+            </span>
+          </h1>
+        </div>
+
+        <!-- Narrative Description -->
+        <p class="text-gray-400 text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+          Re-engineered for those who refuse to settle. The unmistakable iconic taste of authentic Coca-Cola with zero sugar, zero calories, and an electric sub-zero chill. Taste it to believe it.
+        </p>
+
+        <!-- Metric Badges Row -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-md pt-2">
+          <div class="glass-panel p-3.5 rounded-2xl text-center border border-white/10 hover:border-red-500/30 transition">
+            <span class="font-display text-3xl sm:text-4xl text-white block">0g</span>
+            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Sugar</span>
+          </div>
+          <div class="glass-panel p-3.5 rounded-2xl text-center border border-white/10 hover:border-red-500/30 transition">
+            <span class="font-display text-3xl sm:text-4xl text-red-500 block">0</span>
+            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Calories</span>
+          </div>
+          <div class="glass-panel p-3.5 rounded-2xl text-center border border-white/10 hover:border-red-500/30 transition">
+            <span class="font-display text-3xl sm:text-4xl text-white block">100%</span>
+            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Iconic Flavor</span>
+          </div>
+        </div>
+
+        <!-- Action CTAs with Interactive Synthesized Can Snap -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
+          <!-- Can Crack Audio Trigger -->
+          <button class="trigger-crack-sound btn-coke-primary px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase inline-flex items-center justify-center gap-3 w-full sm:w-auto ripple-active" title="Click to hear authentic can crack sound">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span>Crack Open a Cold One</span>
+          </button>
+
+          <a href="#sensory" class="btn-coke-secondary px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase inline-flex items-center justify-center gap-2 w-full sm:w-auto">
+            <span>Discover The Rush</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Social Proof Pill -->
+        <div class="flex items-center gap-3 pt-3">
+          <div class="flex -space-x-2">
+            <span class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-xs font-black border-2 border-black">★</span>
+            <span class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-black border-2 border-black">98</span>
+            <span class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-xs font-black border-2 border-black">❄</span>
+          </div>
+          <span class="text-xs text-gray-400 font-medium">
+            Over <strong class="text-white font-semibold">12,000,000+</strong> cans chilled worldwide today.
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive 3D Can Showcase with Tilt Physics -->
+      <div class="lg:col-span-5 flex justify-center items-center relative can-stage">
+        <!-- Floating Frost Rings -->
+        <div class="absolute w-[440px] h-[440px] rounded-full border border-red-500/20 animate-spin" style="animation-duration: 25s;"></div>
+        <div class="absolute w-[360px] h-[360px] rounded-full border border-white/10"></div>
+        <div class="absolute w-[280px] h-[280px] rounded-full bg-red-600/20 blur-3xl pointer-events-none"></div>
+
+        <!-- Can 3D Wrapper -->
+        <div id="hero-can-wrap" class="can-3d-wrap can-floating w-[290px] sm:w-[340px] md:w-[380px] cursor-pointer" title="Move your cursor to inspect 3D tilt">
+          <img id="hero-can-img" src="./assets/coke-can-classic.svg" alt="Coca-Cola Zero Sugar Can" class="w-full h-auto drop-shadow-[0_25px_35px_rgba(244,0,9,0.35)] select-none">
+        </div>
+
+        <!-- Floating Floating Temp Badge -->
+        <div class="absolute bottom-6 -left-4 sm:left-4 glass-panel px-4 py-2.5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm">
+            ❄
+          </div>
+          <div>
+            <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Sub-Zero Serving</div>
+            <div class="text-sm font-extrabold text-white">Optimal Temp: 2.2°C</div>
+          </div>
+        </div>
+
+        <!-- Floating Acoustic Sound Trigger Badge -->
+        <button class="trigger-crack-sound absolute top-12 right-0 sm:right-4 glass-panel px-4 py-2 rounded-2xl border border-red-500/30 hover:border-red-500 transition shadow-2xl flex items-center gap-2.5 cursor-pointer group">
+          <div class="w-7 h-7 rounded-full bg-red-600 group-hover:scale-110 transition flex items-center justify-center text-white text-xs">
+            🔊
+          </div>
+          <div class="text-left">
+            <span class="block text-[9px] text-red-400 font-bold uppercase tracking-wider">Audio Interactive</span>
+            <span class="text-xs font-bold text-white">Listen to Can Snap</span>
+          </div>
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 2: THE ZERO FLAVOR SPECTRUM        -->
+  <!-- ========================================== -->
+  <section id="flavors" class="py-28 px-4 sm:px-8 relative z-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-red-600/20 text-red-500 border border-red-500/30">
+          The Flavor Spectrum
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-display uppercase tracking-tight text-white">
+          FOUR CRAFTED PROFILES.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
+            ALL ZERO SUGAR.
+          </span>
+        </h2>
+        <p class="text-gray-400 text-base sm:text-lg">
+          Whether you crave the untouchable iconic standard, velvety vanilla, ripe cherry burst, or electric lime twist—each formula is precision-balanced for maximum crispness.
+        </p>
+
+        <!-- Flavor Selector Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-6">
+          <button data-flavor="classic" data-update-hero class="flavor-pill active px-5 py-3 rounded-2xl flex items-center gap-3 border font-semibold text-sm">
+            <span class="w-3.5 h-3.5 rounded-full bg-red-600 shadow-md shadow-red-600/60"></span>
+            <span>Classic Zero</span>
+          </button>
+          <button data-flavor="cherry" data-update-hero class="flavor-pill px-5 py-3 rounded-2xl flex items-center gap-3 border font-semibold text-sm">
+            <span class="w-3.5 h-3.5 rounded-full bg-pink-700 shadow-md shadow-pink-700/60"></span>
+            <span>Cherry Zero</span>
+          </button>
+          <button data-flavor="vanilla" data-update-hero class="flavor-pill px-5 py-3 rounded-2xl flex items-center gap-3 border font-semibold text-sm">
+            <span class="w-3.5 h-3.5 rounded-full bg-amber-500 shadow-md shadow-amber-500/60"></span>
+            <span>Vanilla Zero</span>
+          </button>
+          <button data-flavor="lime" data-update-hero class="flavor-pill px-5 py-3 rounded-2xl flex items-center gap-3 border font-semibold text-sm">
+            <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 shadow-md shadow-emerald-400/60"></span>
+            <span>Lime Zero</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Flavor Showcase Stage -->
+      <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Flavor Can Display -->
+        <div class="lg:col-span-5 flex justify-center items-center py-6 relative">
+          <div class="w-[240px] sm:w-[280px] transition-all duration-300 transform" id="flavor-can-wrapper">
+            <img id="flavor-showcase-img" src="./assets/coke-can-classic.svg" alt="Coca-Cola Zero Flavor" class="w-full h-auto drop-shadow-2xl transition-all duration-300">
+          </div>
+        </div>
+
+        <!-- Flavor Breakdown & Live Taste Radar -->
+        <div class="lg:col-span-7 space-y-8">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <span id="flavor-badge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-red-600 text-white">
+                100% Iconic
+              </span>
+              <span class="text-xs text-gray-400 font-tech">BATCH SPEC: REFINED 2026</span>
+            </div>
+            <h3 id="flavor-title" class="text-3xl sm:text-5xl font-display uppercase tracking-wider text-white">
+              Coca-Cola Zero Sugar
+            </h3>
+            <p id="flavor-tagline" class="text-red-400 text-base sm:text-lg font-medium mt-1">
+              The Original Legend. Maximum Taste.
+            </p>
+          </div>
+
+          <p id="flavor-notes" class="text-gray-300 text-base leading-relaxed">
+            Authentic, time-tested secret formula. Zero sugar, zero compromise. Engineered to mirror the mouthfeel and high-sparkle carbonation of classic Coca-Cola.
+          </p>
+
+          <!-- Sensory Profile Meters -->
+          <div class="space-y-4 pt-2">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+              Live Sensory Profile
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Sweetness -->
+              <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-gray-300">Sweetness Profile</span>
+                  <span id="val-sweetness" class="text-red-400 font-mono">92%</span>
+                </div>
+                <div class="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+                  <div id="bar-sweetness" class="meter-fill h-full bg-red-600 rounded-full" style="width: 92%;"></div>
+                </div>
+              </div>
+
+              <!-- Crispness -->
+              <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-gray-300">Crisp Carbonation</span>
+                  <span id="val-crispness" class="text-red-400 font-mono">98%</span>
+                </div>
+                <div class="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+                  <div id="bar-crispness" class="meter-fill h-full bg-red-500 rounded-full" style="width: 98%;"></div>
+                </div>
+              </div>
+
+              <!-- Fizz Velocity -->
+              <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-gray-300">Fizz Velocity</span>
+                  <span id="val-fizz" class="text-red-400 font-mono">95%</span>
+                </div>
+                <div class="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+                  <div id="bar-fizz" class="meter-fill h-full bg-amber-500 rounded-full" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <!-- Sub-Zero Chill -->
+              <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-gray-300">Arctic Chill Factor</span>
+                  <span id="val-chill" class="text-cyan-400 font-mono">100%</span>
+                </div>
+                <div class="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+                  <div id="bar-chill" class="meter-fill h-full bg-cyan-400 rounded-full" style="width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+            <button class="trigger-crack-sound btn-coke-primary px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              <span>Test Acoustic Crack</span>
+            </button>
+            <a href="#locator" class="btn-coke-secondary px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+              <span>Find in Stores</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 3: THE SENSORY SYMPHONY            -->
+  <!-- ========================================== -->
+  <section id="sensory" class="py-28 px-4 sm:px-8 relative z-10 bg-gradient-to-b from-[#060607] via-[#0d0d12] to-[#060607]">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-white/10 text-gray-300 border border-white/10">
+          The 3-Second Rush
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-display uppercase tracking-tight text-white">
+          THE SENSORY SYMPHONY.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-red-500 to-red-600">
+            FROM POP TO PURE CHILL.
+          </span>
+        </h2>
+        <p class="text-gray-400 text-base sm:text-lg">
+          Every can is an acoustic and chemical masterpiece engineered for an instant cascade of dopamine. Hover over or tap each phase to trigger synthesized acoustics.
+        </p>
+      </div>
+
+      <!-- 4-Step Interactive Timeline Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="sensory-card glass-panel glass-panel-interactive p-7 rounded-3xl border border-white/10 relative overflow-hidden group cursor-pointer">
+          <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center font-display text-2xl text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+            01
+          </div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest">T = 0.00s</div>
+          <h3 class="font-display text-2xl uppercase tracking-wider text-white mt-1 group-hover:text-red-400 transition">
+            The Acoustic Snap
+          </h3>
+          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+            The aluminum ring pull fractures the hermetic seal at 2.2°C, releasing a 35 psi pressurized vapor hiss that triggers instantaneous anticipation.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-red-400 font-bold">
+            <span>Click to Trigger Pop</span>
+            <span>🔊 620Hz</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="sensory-card glass-panel glass-panel-interactive p-7 rounded-3xl border border-white/10 relative overflow-hidden group cursor-pointer">
+          <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center font-display text-2xl text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+            02
+          </div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest">T = 0.85s</div>
+          <h3 class="font-display text-2xl uppercase tracking-wider text-white mt-1 group-hover:text-red-400 transition">
+            Effervescent Surge
+          </h3>
+          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+            Over 200 million micro-carbonation bubbles surge upward, dancing across the palate and activating sensory taste buds with crisp electrical fizz.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-red-400 font-bold">
+            <span>Click for Fizz Surge</span>
+            <span>🫧 5000Hz</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="sensory-card glass-panel glass-panel-interactive p-7 rounded-3xl border border-white/10 relative overflow-hidden group cursor-pointer">
+          <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center font-display text-2xl text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+            03
+          </div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest">T = 1.75s</div>
+          <h3 class="font-display text-2xl uppercase tracking-wider text-white mt-1 group-hover:text-red-400 transition">
+            Secret Formula Rush
+          </h3>
+          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+            The full-bodied, unmistakable Coca-Cola blend of caramel, citrus, and proprietary spice notes peaks—without a single gram of real sugar.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-red-400 font-bold">
+            <span>Click for Chime</span>
+            <span>🎵 Harmonic</span>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="sensory-card glass-panel glass-panel-interactive p-7 rounded-3xl border border-white/10 relative overflow-hidden group cursor-pointer">
+          <div class="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center font-display text-2xl text-red-500 mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+            04
+          </div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest">T = 3.00s</div>
+          <h3 class="font-display text-2xl uppercase tracking-wider text-white mt-1 group-hover:text-red-400 transition">
+            Sub-Zero Clean Finish
+          </h3>
+          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+            Zero cloying aftertaste, zero sugar crash, zero coating on the teeth. Just razor-sharp arctic refreshment that commands your next sip.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-red-400 font-bold">
+            <span>Click for Pure Refresh</span>
+            <span>❄ 0g Sugar</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 4: ZERO SUGAR VS CLASSIC SHOWDOWN  -->
+  <!-- ========================================== -->
+  <section id="comparison" class="py-28 px-4 sm:px-8 relative z-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-red-600/20 text-red-500 border border-red-500/30">
+          The Honest Showdown
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-display uppercase tracking-tight text-white">
+          COCA-COLA ZERO VS CLASSIC.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
+            THE NUMBERS DON'T LIE.
+          </span>
+        </h2>
+        <p class="text-gray-400 text-base sm:text-lg">
+          How does Coca-Cola Zero Sugar stack up against the original giant? All the legendary flavor satisfaction, minus the calories and sugar crash.
+        </p>
+      </div>
+
+      <!-- Comparison Grid Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Zero Sugar Card (Champion) -->
+        <div class="glass-panel p-8 sm:p-10 rounded-3xl border-2 border-red-600/50 bg-gradient-to-b from-red-950/20 via-black to-black shadow-2xl relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute top-4 right-4 bg-red-600 text-white text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+            The Modern Standard
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center font-display text-3xl text-white">
+                0
+              </div>
+              <div>
+                <h3 class="font-display text-3xl text-white uppercase tracking-wider">Coca-Cola Zero Sugar</h3>
+                <span class="text-xs text-red-400 font-bold uppercase tracking-widest">330 mL Can</span>
+              </div>
+            </div>
+
+            <!-- Stats Rows -->
+            <div class="space-y-3 pt-4">
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-300 font-medium text-sm">Calories</span>
+                <span class="text-xl font-black text-red-400">0 kcal</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-300 font-medium text-sm">Total Sugar</span>
+                <span class="text-xl font-black text-white">0 g</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-300 font-medium text-sm">Glycemic Impact</span>
+                <span class="text-xl font-black text-green-400">Zero Crash</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-300 font-medium text-sm">Blind Test Flavor Match</span>
+                <span class="text-xl font-black text-red-500">98.4%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-gray-400 font-semibold">Guilt-Free Daily Refreshment</span>
+            <span class="text-xs bg-red-600/30 text-red-400 font-bold px-3 py-1 rounded-full">Winner</span>
+          </div>
+        </div>
+
+        <!-- Classic Coke Card -->
+        <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 bg-black/50 shadow-2xl relative overflow-hidden flex flex-col justify-between opacity-85">
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-zinc-800 flex items-center justify-center font-display text-2xl text-gray-300">
+                1886
+              </div>
+              <div>
+                <h3 class="font-display text-3xl text-gray-200 uppercase tracking-wider">Coca-Cola Classic</h3>
+                <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">330 mL Can</span>
+              </div>
+            </div>
+
+            <!-- Stats Rows -->
+            <div class="space-y-3 pt-4">
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-400 font-medium text-sm">Calories</span>
+                <span class="text-xl font-black text-gray-300">139 kcal</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-400 font-medium text-sm">Total Sugar</span>
+                <span class="text-xl font-black text-amber-500">35 g (7.8 cubes)</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-400 font-medium text-sm">Glycemic Impact</span>
+                <span class="text-xl font-black text-yellow-500">Sugar Spike & Crash</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-gray-400 font-medium text-sm">Blind Test Flavor Match</span>
+                <span class="text-xl font-black text-gray-300">Original Baseline</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-gray-400 font-semibold">High Sugar Classic Formula</span>
+            <span class="text-xs bg-white/10 text-gray-400 font-bold px-3 py-1 rounded-full">Classic</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Blind Taste Mini-Challenge -->
+      <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-red-500/30 bg-gradient-to-r from-red-950/20 via-black to-red-950/10 shadow-2xl">
+        <div id="blind-test-quiz" class="space-y-6 text-center max-w-2xl mx-auto">
+          <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-red-600 text-white">
+            Interactive Test
+          </span>
+          <h3 class="text-3xl sm:text-4xl font-display uppercase tracking-wider text-white">
+            Can Your Senses Tell The Difference?
+          </h3>
+          <p class="text-gray-300 text-sm sm:text-base">
+            In global double-blind trials, 8 out of 10 participants could not distinguish cold Coca-Cola Zero Sugar from the full-sugar original. What is your prediction?
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <button class="blind-test-btn p-4 rounded-2xl glass-panel border border-white/15 hover:border-red-500 hover:bg-red-600/20 transition font-bold text-sm text-left flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-red-600/30 text-red-400 flex items-center justify-center">A</span>
+              <span>"Zero Sugar tastes even crisper"</span>
+            </button>
+            <button class="blind-test-btn p-4 rounded-2xl glass-panel border border-white/15 hover:border-red-500 hover:bg-red-600/20 transition font-bold text-sm text-left flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-red-600/30 text-red-400 flex items-center justify-center">B</span>
+              <span>"I literally cannot tell them apart"</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Blind Test Result (Hidden initially) -->
+        <div id="blind-test-result" class="hidden text-center max-w-2xl mx-auto space-y-6 py-4">
+          <div class="w-16 h-16 rounded-full bg-red-600 mx-auto flex items-center justify-center text-2xl shadow-xl shadow-red-600/50">
+            🎉
+          </div>
+          <h3 class="text-3xl sm:text-4xl font-display uppercase tracking-wider text-white">
+            You Scored Like 82% Of Consumers!
+          </h3>
+          <p class="text-gray-300 text-base leading-relaxed">
+            That's the Real Magic of Coca-Cola Zero Sugar. We spent over 5 years rebalancing the micro-carbonation, pH balance, and natural aromatics so you get all the iconic cola satisfaction without any sugar compromise.
+          </p>
+          <button id="blind-test-reset" class="btn-coke-primary px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider">
+            Try Again
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 5: ZERO LIMITS COMMUNITY & CULTURE -->
+  <!-- ========================================== -->
+  <section id="community" class="py-28 px-4 sm:px-8 relative z-10 bg-[#060607]">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-red-600/20 text-red-500 border border-red-500/30">
+          The Culture
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-display uppercase tracking-tight text-white">
+          ZERO LIMITS.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-red-500 to-red-600">
+            FUELING THE MODERN MOVEMENT.
+          </span>
+        </h2>
+        <p class="text-gray-400 text-base sm:text-lg">
+          From competitive gaming arenas and music festivals to late-night coding breakthroughs—Coca-Cola Zero Sugar is the official beverage of relentless ambition.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
+        <!-- Bento Card 1: Esports & Gaming (Large) -->
+        <div class="md:col-span-2 glass-panel p-8 rounded-3xl border border-white/10 relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="space-y-4 relative z-10">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-red-600 text-white">
+              Official Gaming Fuel
+            </span>
+            <h3 class="font-display text-4xl text-white uppercase tracking-wider">
+              Zero Sugar Crash. 100% Clutch.
+            </h3>
+            <p class="text-gray-400 text-sm max-w-md leading-relaxed">
+              When the match is on the line at 2 AM, sugar crashes are lethal. Zero calories, optimal caffeine balance, and intense crispness keep reflexes instantaneous.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 pt-8 relative z-10">
+            <span class="text-xs font-mono text-gray-400">FPS / MOBA / SIM RACING</span>
+            <span class="text-xs text-red-500 font-bold">• 0 ms Lag</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Festival & Live Music -->
+        <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-white/10 text-gray-300">
+              Live Sound
+            </span>
+            <h3 class="font-display text-3xl text-white uppercase tracking-wider">
+              The Sub-Zero Oasis
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Main stage heatwave? Grab an ice-cold 330mL sleek can from the sub-zero chill vault.
+            </p>
+          </div>
+          <div class="text-xs text-red-400 font-bold pt-6">
+            Summer Tour 2026
+          </div>
+        </div>
+
+        <!-- Bento Card 3: 100% Recyclable Aluminum -->
+        <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-emerald-600/30 text-emerald-400 border border-emerald-500/30">
+              Planet Positive
+            </span>
+            <h3 class="font-display text-3xl text-white uppercase tracking-wider">
+              Infinite Aluminum
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              100% infinitely recyclable cans. Back on the shelf as a new can in under 60 days.
+            </p>
+          </div>
+          <div class="text-xs text-emerald-400 font-bold pt-6">
+            Circular Economy
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Verified User Quote 1 -->
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center gap-1 text-red-500 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm italic">
+              "I used to drink 2 regular Cokes a day. Switched to Zero Sugar 3 years ago and haven't looked back once. Better crispness, zero crash."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white">MK</div>
+            <div>
+              <div class="text-xs font-bold text-white">Marcus King</div>
+              <div class="text-[10px] text-gray-500">Verified Consumer • London</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 5: Verified User Quote 2 -->
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center gap-1 text-red-500 text-sm">★★★★★</div>
+            <p class="text-gray-300 text-sm italic">
+              "The Cherry Zero is criminal. It tastes so indulgent I still check the back of the can to make sure it's actually 0 calories."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-xs font-bold text-white">EC</div>
+            <div>
+              <div class="text-xs font-bold text-white">Elena Chen</div>
+              <div class="text-[10px] text-gray-500">Verified Consumer • NYC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 6: Late-Night Creators -->
+        <div class="md:col-span-2 glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between relative overflow-hidden">
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-red-600/20 text-red-400">
+              Midnight Sessions
+            </span>
+            <h3 class="font-display text-3xl sm:text-4xl text-white uppercase tracking-wider">
+              Engineered For The Night Shift
+            </h3>
+            <p class="text-gray-400 text-sm max-w-lg leading-relaxed">
+              When caffeine meets zero sugar, you get the pure alertness of cold cola without insulin fluctuations. The drink of choice for coders, designers, and late-night producers worldwide.
+            </p>
+          </div>
+          <div class="flex items-center gap-6 pt-6 text-xs text-gray-400 font-mono">
+            <span>330mL Sleek</span>
+            <span>•</span>
+            <span>32mg Caffeine</span>
+            <span>•</span>
+            <span>0g Carbs</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- SECTION 6: COLD FINDER & VIP DROPS         -->
+  <!-- ========================================== -->
+  <section id="locator" class="py-28 px-4 sm:px-8 relative z-10 border-t border-white/5 bg-gradient-to-b from-[#060607] to-[#0d0d12]">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-red-600/20 text-red-500 border border-red-500/30">
+          Sub-Zero Locator
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-display uppercase tracking-tight text-white">
+          FIND YOUR CHILL.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
+            COLD CANS NEAR YOU.
+          </span>
+        </h2>
+        <p class="text-gray-400 text-base sm:text-lg">
+          Locate ice-cold Coca-Cola Zero Sugar in under 30 seconds. Tap a quick city or enter your zip code to scan chilled inventories.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Interactive Store Finder -->
+        <div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-grow">
+              <input id="store-zip-input" type="text" placeholder="Enter Zip Code or City (e.g. 10001)" class="w-full bg-black/60 border border-white/15 rounded-2xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition text-sm">
+            </div>
+            <button id="store-search-btn" class="btn-coke-primary px-7 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <span>Scan Stock</span>
+            </button>
+          </div>
+
+          <!-- Quick City Filters -->
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="text-xs text-gray-400 font-bold self-center mr-2">Quick Cities:</span>
+            <button class="store-city-pill px-3.5 py-1.5 rounded-full text-xs font-semibold glass-panel hover:border-red-500/40 transition" data-zip="10001">New York</button>
+            <button class="store-city-pill px-3.5 py-1.5 rounded-full text-xs font-semibold glass-panel hover:border-red-500/40 transition" data-zip="90210">Los Angeles</button>
+            <button class="store-city-pill px-3.5 py-1.5 rounded-full text-xs font-semibold glass-panel hover:border-red-500/40 transition" data-zip="60601">Chicago</button>
+            <button class="store-city-pill px-3.5 py-1.5 rounded-full text-xs font-semibold glass-panel hover:border-red-500/40 transition" data-zip="default">Tokyo / Global</button>
+          </div>
+
+          <!-- Store Results Dynamic Container -->
+          <div id="store-results" class="space-y-3 pt-2">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: The Zero Circle VIP Drops & Newsletter -->
+        <div class="lg:col-span-5 glass-panel p-8 sm:p-10 rounded-3xl border border-red-600/40 bg-gradient-to-b from-red-950/30 via-black to-black shadow-2xl space-y-6">
+          <div class="w-12 h-12 rounded-2xl bg-red-600 flex items-center justify-center font-black text-white text-xl shadow-lg shadow-red-600/40">
+            ★
+          </div>
+          <div>
+            <h3 class="font-display text-3xl sm:text-4xl uppercase tracking-wider text-white">
+              Join The Zero Circle
+            </h3>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Get secret drops, VIP early access to limited flavors, festival activations, and an instant sub-zero welcome code.
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form id="vip-form" class="space-y-3">
+            <div>
+              <label for="vip-email" class="sr-only">Your Email Address</label>
+              <input id="vip-email" type="email" required placeholder="Enter your email address" class="w-full bg-black/60 border border-white/15 rounded-2xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition text-sm">
+            </div>
+            <button type="submit" class="btn-coke-primary w-full py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+              <span>Unlock Secret Drops</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </form>
+
+          <!-- Feedback & Coupon Code -->
+          <div id="vip-feedback" class="hidden p-5 rounded-2xl bg-red-600/20 border border-red-500/40 text-center space-y-2">
+            <span class="text-2xl">❄️🎉</span>
+            <h4 class="font-bold text-white text-base">You're In The Zero Circle!</h4>
+            <p class="text-xs text-gray-300">Use promo code below for $2 off your next 12-pack:</p>
+            <div class="font-mono text-sm font-black text-red-400 tracking-widest bg-black/50 py-2 rounded-lg border border-red-500/30">
+              ZEROCHILL2026
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/5 text-[11px] text-gray-500">
+            *No spam. Unsubscribe anytime with a single click. We respect your privacy.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- GLOBAL FOOTER                              -->
+  <!-- ========================================== -->
+  <footer class="py-16 px-4 sm:px-8 border-t border-white/10 bg-black relative z-10 text-gray-400">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Brand & Mission -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-black text-white text-base">
+              0
+            </div>
+            <span class="font-display text-2xl tracking-wider uppercase text-white">
+              Coca-Cola Zero
+            </span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            Real Magic. Zero Sugar. Zero Calories. Maximum cold refreshment engineered for every generation.
+          </p>
+        </div>
+
+        <!-- Links Column 1: Flavors -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest">Flavors</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#flavors" class="hover:text-red-400 transition">Coca-Cola Zero Sugar</a></li>
+            <li><a href="#flavors" class="hover:text-red-400 transition">Coca-Cola Cherry Zero</a></li>
+            <li><a href="#flavors" class="hover:text-red-400 transition">Coca-Cola Vanilla Zero</a></li>
+            <li><a href="#flavors" class="hover:text-red-400 transition">Coca-Cola Lime Zero</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2: Science & Transparency -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest">Transparency</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#comparison" class="hover:text-red-400 transition">Nutrition & Ingredients</a></li>
+            <li><a href="#comparison" class="hover:text-red-400 transition">Zero vs Classic Facts</a></li>
+            <li><a href="#sensory" class="hover:text-red-400 transition">Sensory Engineering</a></li>
+            <li><a href="#community" class="hover:text-red-400 transition">100% Recyclable Can Tech</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 3: Legal & Notice -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest">Notice & Diet Info</h4>
+          <p class="text-[11px] text-gray-500 leading-normal">
+            Phenylketonurics: Contains Phenylalanine. Sweetened with aspartame and acesulfame potassium.
+          </p>
+          <div class="pt-2">
+            <span class="text-xs text-red-500 font-bold">Optimal Chill: 2.2°C (36°F)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+        <p>© 2026 The Coca-Cola Company. All rights reserved. "Coca-Cola", "Coke Zero Sugar", "Real Magic", and the Contour Bottle are registered trademarks.</p>
+        <div class="flex items-center gap-6">
+          <a href="#hero" class="hover:text-white transition">Back to Top ↑</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- App Interaction Script (Relative Path for GitHub Pages subpath compatibility) -->
+  <script src="./js/app.js"></script>
+</body>
+</html>

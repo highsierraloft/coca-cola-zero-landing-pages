@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Coca-Cola Zero splash">
+  <defs>
+    <radialGradient id="drop" cx="0.35" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ff3a4a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#E61A27" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wave" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff5466" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E61A27" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="300" cy="300" r="240" fill="url(#drop)"/>
+  <path d="M120 360 Q300 220 480 360 Q420 480 300 480 Q180 480 120 360 Z" fill="url(#wave)" opacity="0.6"/>
+  <circle cx="220" cy="220" r="18" fill="#fff" opacity="0.5"/>
+  <circle cx="380" cy="180" r="10" fill="#fff" opacity="0.4"/>
+  <circle cx="420" cy="320" r="14" fill="#fff" opacity="0.35"/>
+  <circle cx="180" cy="380" r="8" fill="#fff" opacity="0.3"/>
+</svg>

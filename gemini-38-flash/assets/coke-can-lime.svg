@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="limeBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#020a04" />
+      <stop offset="15%" stop-color="#071f0d" />
+      <stop offset="30%" stop-color="#0e3d1a" />
+      <stop offset="45%" stop-color="#08210f" />
+      <stop offset="70%" stop-color="#031006" />
+      <stop offset="90%" stop-color="#0c3315" />
+      <stop offset="100%" stop-color="#030d05" />
+    </linearGradient>
+
+    <linearGradient id="metalRimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#555" /><stop offset="20%" stop-color="#bbb" /><stop offset="35%" stop-color="#fff" /><stop offset="55%" stop-color="#888" /><stop offset="85%" stop-color="#ddd" /><stop offset="100%" stop-color="#333" />
+    </linearGradient>
+    <linearGradient id="lipGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#222" /><stop offset="25%" stop-color="#888" /><stop offset="50%" stop-color="#e0e0e0" /><stop offset="75%" stop-color="#666" /><stop offset="100%" stop-color="#1a1a1a" />
+    </linearGradient>
+    <linearGradient id="limeBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00802b" />
+      <stop offset="25%" stop-color="#00b33c" />
+      <stop offset="45%" stop-color="#2ee66b" />
+      <stop offset="75%" stop-color="#00b33c" />
+      <stop offset="100%" stop-color="#006622" />
+    </linearGradient>
+
+    <linearGradient id="specularGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.25" />
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45" />
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="limeShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="25" flood-color="#2ee66b" flood-opacity="0.3" />
+      <feDropShadow dx="0" dy="15" stdDeviation="35" flood-color="#000000" flood-opacity="0.7" />
+    </filter>
+  </defs>
+
+  <g filter="url(#limeShadow)">
+    <path d="M 120 70 Q 200 60 280 70 L 290 95 Q 200 85 110 95 Z" fill="url(#metalRimGrad)" />
+    <ellipse cx="200" cy="70" rx="80" ry="18" fill="url(#metalRimGrad)" stroke="#444" stroke-width="1.5" />
+    <ellipse cx="200" cy="69" rx="68" ry="14" fill="#666" opacity="0.6" />
+    <path d="M 188 64 Q 200 60 212 64 L 210 73 Q 200 75 190 73 Z" fill="#ccc" stroke="#777" stroke-width="1" />
+    <circle cx="200" cy="67" r="3" fill="#444" />
+    
+    <path d="M 110 95 Q 200 85 290 95 L 305 135 Q 200 125 95 135 Z" fill="url(#lipGrad)" />
+    <path d="M 95 135 Q 200 125 305 135 L 305 570 Q 200 580 95 570 Z" fill="url(#limeBodyGrad)" />
+    <path d="M 95 135 Q 200 125 305 135 L 305 215 Q 200 205 95 215 Z" fill="url(#limeBannerGrad)" />
+    
+    <!-- Lime Slice graphic -->
+    <circle cx="200" cy="180" r="14" fill="#2ee66b" stroke="#ffffff" stroke-width="1.5" />
+    <circle cx="200" cy="180" r="11" fill="#76ff03" />
+    <circle cx="200" cy="180" r="3" fill="#ffffff" />
+    <line x1="200" y1="169" x2="200" y2="191" stroke="#ffffff" stroke-width="1.5" />
+    <line x1="189" y1="180" x2="211" y2="180" stroke="#ffffff" stroke-width="1.5" />
+    
+    <!-- Coca-Cola Vertical Script -->
+    <g transform="translate(180, 355) rotate(-90)">
+      <text x="0" y="0" font-family="'Brush Script MT', 'Bickham Script Pro', cursive, sans-serif" font-size="58" font-weight="bold" fill="#ffffff" text-anchor="middle">
+        Coca-Cola
+      </text>
+      <path d="M -125 14 Q -40 28 35 12 Q 95 -1 130 14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <!-- Lime Zero Sugar Badge -->
+    <g transform="translate(200, 465)">
+      <rect x="-82" y="-18" width="164" height="36" rx="18" fill="#2ee66b" />
+      <text x="0" y="6" font-family="'Helvetica Neue', 'Arial Black', sans-serif" font-weight="900" font-size="18" fill="#031006" text-anchor="middle" letter-spacing="1">
+        LIME ZERO
+      </text>
+    </g>
+    <text x="200" y="525" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#9ff5b7" text-anchor="middle" letter-spacing="3">
+      CRISP CITRUS ZEST • 330 mL
+    </text>
+
+    <path d="M 95 570 Q 200 580 305 570 L 290 620 Q 200 630 110 620 Z" fill="url(#lipGrad)" />
+    <ellipse cx="200" cy="620" rx="90" ry="14" fill="url(#metalRimGrad)" />
+
+    <path d="M 95 135 L 305 135 L 305 570 L 95 570 Z" fill="url(#specularGlow)" pointer-events="none" />
+    <circle cx="135" cy="270" r="3" fill="#ffffff" opacity="0.6" />
+    <circle cx="265" cy="360" r="4" fill="#ffffff" opacity="0.6" />
+  </g>
+</svg>

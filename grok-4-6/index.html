@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Coca-Cola Zero Sugar — real Coca-Cola taste with zero sugar and zero calories. Explore flavors, moments, and the midnight refreshment.">
+  <title>Coca-Cola Zero Sugar | Real Taste. Zero Sugar.</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Yesteryear&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip" href="#hero">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="wordmark" href="#hero" aria-label="Coca-Cola Zero Sugar home">
+        <span class="wordmark__script">Coca-Cola</span>
+        <span class="wordmark__zero">zero sugar</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" id="navLinks">
+        <a href="#taste">Taste</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#moments">Moments</a>
+        <a href="#inside">Inside</a>
+        <a href="#find" class="nav__cta">Find Zero</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <canvas class="hero__fizz" id="fizz" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Coca-Cola Zero Sugar</p>
+          <h1>
+            <span class="hero__script">Taste the</span>
+            <span class="hero__zero">Zero</span>
+          </h1>
+          <p class="hero__lead">Real Coca-Cola taste. Zero sugar. Zero calories. The iconic bite, recast in black — made for midnight, made for now.</p>
+          <div class="hero__actions">
+            <a class="btn btn--red" href="#flavors">Explore flavors</a>
+            <a class="btn btn--ghost" href="#taste">The real taste</a>
+          </div>
+          <ul class="hero__stats">
+            <li><strong>0g</strong><span>sugar</span></li>
+            <li><strong>0</strong><span>calories</span></li>
+            <li><strong>100%</strong><span>attitude</span></li>
+          </ul>
+        </div>
+        <div class="hero__stage" id="heroStage">
+          <div class="hero__orbit" aria-hidden="true"></div>
+          <img class="hero__can" src="./assets/images/can-original.svg" alt="Coca-Cola Zero Sugar can" width="280" height="620">
+          <div class="hero__splash" aria-hidden="true"></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#taste">
+        <span>Scroll</span>
+        <i></i>
+      </a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Zero sugar · Zero calories · Real taste · Midnight refreshment · Zero sugar · Zero calories · Real taste · Midnight refreshment ·</span>
+        <span>Zero sugar · Zero calories · Real taste · Midnight refreshment · Zero sugar · Zero calories · Real taste · Midnight refreshment ·</span>
+      </div>
+    </div>
+
+    <section class="taste" id="taste">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">01 — The promise</p>
+          <h2>Not a compromise.<br>A standard.</h2>
+          <p class="lede">Coca-Cola Zero Sugar keeps the caramel depth, the bright acid snap, and that familiar finish — without the sugar. Same legend. Lighter ritual.</p>
+        </div>
+        <div class="taste__grid">
+          <article class="taste__card reveal">
+            <div class="taste__num">00</div>
+            <h3>Grams of sugar</h3>
+            <p>Sweetness without the load. A crisp pour that stays true from first fizz to last sip.</p>
+          </article>
+          <article class="taste__card taste__card--red reveal">
+            <div class="taste__num">00</div>
+            <h3>Calories</h3>
+            <p>All the drama of the red script. None of the extra. Built for long nights and early mornings.</p>
+          </article>
+          <article class="taste__card reveal">
+            <div class="taste__num">∞</div>
+            <h3>Real Coca-Cola taste</h3>
+            <p>The bite you know. Phosphoric sparkle, caramel warmth, and a clean, cold finish.</p>
+          </article>
+        </div>
+        <div class="taste__panel reveal">
+          <div class="taste__copy">
+            <h3>The profile</h3>
+            <p>Engineered for people who want the original character — not a diet afterthought. Ice-cold, high-contrast, unapologetically cola.</p>
+            <dl class="meters">
+              <div>
+                <dt>Fizz</dt>
+                <dd><span style="--p:92%"></span></dd>
+              </div>
+              <div>
+                <dt>Bite</dt>
+                <dd><span style="--p:88%"></span></dd>
+              </div>
+              <div>
+                <dt>Caramel</dt>
+                <dd><span style="--p:80%"></span></dd>
+              </div>
+              <div>
+                <dt>Finish</dt>
+                <dd><span style="--p:86%"></span></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="taste__visual">
+            <img src="./assets/images/ribbon.svg" alt="" class="taste__ribbon">
+            <blockquote>“If it doesn’t taste like Coca-Cola, it isn’t Zero.”</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flavors" id="flavors">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">02 — The lineup</p>
+          <h2>Pick your midnight.</h2>
+          <p class="lede">Five Zero Sugar expressions. One black-and-red attitude. Choose a can and hear it hiss.</p>
+        </div>
+        <div class="theater" data-flavor="original">
+          <div class="theater__stage reveal">
+            <img id="flavorCan" src="./assets/images/can-original.svg" alt="Selected Coca-Cola Zero Sugar flavor can" width="280" height="620">
+          </div>
+          <div class="theater__info reveal">
+            <p class="theater__kicker" id="flavorKicker">Original</p>
+            <h3 id="flavorTitle">Coca-Cola Zero Sugar</h3>
+            <p id="flavorCopy">The flagship. Deep cola, bright sparkle, and a dry, refreshing close. The can you reach for when the night is still deciding what it wants to be.</p>
+            <ul class="notes" id="flavorNotes">
+              <li>Caramel</li>
+              <li>Citrus spark</li>
+              <li>Clean finish</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flavor-row" role="list">
+          <button class="flavor-chip is-active" data-id="original" role="listitem">
+            <img src="./assets/images/can-original.svg" alt="">
+            <span>Original</span>
+          </button>
+          <button class="flavor-chip" data-id="cherry" role="listitem">
+            <img src="./assets/images/can-cherry.svg" alt="">
+            <span>Cherry</span>
+          </button>
+          <button class="flavor-chip" data-id="vanilla" role="listitem">
+            <img src="./assets/images/can-vanilla.svg" alt="">
+            <span>Vanilla</span>
+          </button>
+          <button class="flavor-chip" data-id="lime" role="listitem">
+            <img src="./assets/images/can-lime.svg" alt="">
+            <span>Lime</span>
+          </button>
+          <button class="flavor-chip" data-id="orange" role="listitem">
+            <img src="./assets/images/can-orange.svg" alt="">
+            <span>Orange Vanilla</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="moments" id="moments">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">03 — The ritual</p>
+          <h2>Made for every hour that refuses to fade.</h2>
+        </div>
+        <div class="moments__grid">
+          <article class="moment moment--late reveal">
+            <p class="moment__tag">01 / After hours</p>
+            <h3>Rooftop black</h3>
+            <p>City grid below. Cold can in hand. Zero sugar, full volume.</p>
+          </article>
+          <article class="moment moment--studio reveal">
+            <p class="moment__tag">02 / In session</p>
+            <h3>Studio hiss</h3>
+            <p>Crack. Pour. Create. A clean lift that never clutters the mix.</p>
+          </article>
+          <article class="moment moment--road reveal">
+            <p class="moment__tag">03 / On the move</p>
+            <h3>Highway silver</h3>
+            <p>Open window, red script, long stretch of night. Zero riding shotgun.</p>
+          </article>
+          <article class="moment moment--ice reveal">
+            <p class="moment__tag">04 / Ice ritual</p>
+            <h3>Over cubes</h3>
+            <p>Tall glass. Hard ice. That first bite of fizz hitting metal-cold.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inside" id="inside">
+      <div class="wrap inside__grid">
+        <div class="inside__copy reveal">
+          <p class="eyebrow">04 — Inside the can</p>
+          <h2>Spec’d like a classic. Tuned for zero.</h2>
+          <p class="lede">Carbonation first. Flavor always. A modern cola built on the original silhouette — with sugar taken off the label.</p>
+          <ul class="spec">
+            <li><span>Character</span><b>Real Coca-Cola taste</b></li>
+            <li><span>Sugar</span><b>0 grams</b></li>
+            <li><span>Calories</span><b>0</b></li>
+            <li><span>Caffeine</span><b>34 mg / 12 fl oz</b></li>
+            <li><span>Serve</span><b>Ice-cold, never shy</b></li>
+          </ul>
+        </div>
+        <aside class="nutrition reveal">
+          <header>
+            <p>Nutrition facts</p>
+            <h3>12 fl oz (355 mL)</h3>
+          </header>
+          <ul>
+            <li><span>Calories</span><b>0</b></li>
+            <li><span>Total fat</span><b>0g</b></li>
+            <li><span>Sodium</span><b>40mg</b></li>
+            <li><span>Total carbohydrate</span><b>0g</b></li>
+            <li><span>Total sugars</span><b>0g</b></li>
+            <li><span>Protein</span><b>0g</b></li>
+          </ul>
+          <p class="nutrition__note">Typical values for Coca-Cola Zero Sugar. Always read the can in your market. This page is an unofficial tribute and is not affiliated with The Coca-Cola Company.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="find" id="find">
+      <div class="wrap find__grid">
+        <div class="find__copy reveal">
+          <p class="eyebrow">05 — Get yours</p>
+          <h2>Crack open a Zero.</h2>
+          <p class="lede">Drop your city. We’ll point you toward the nearest cold one — grocery, corner shop, or late-night cooler.</p>
+        </div>
+        <form class="finder reveal" id="finder" action="#" method="post">
+          <label for="city">City or postal code</label>
+          <div class="finder__row">
+            <input id="city" name="city" type="text" placeholder="Atlanta, 30313, or your night" required autocomplete="address-level2">
+            <button class="btn btn--red" type="submit">Find Zero</button>
+          </div>
+          <p class="finder__msg" id="finderMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <a class="wordmark" href="#hero">
+          <span class="wordmark__script">Coca-Cola</span>
+          <span class="wordmark__zero">zero sugar</span>
+        </a>
+        <p>Real taste. Zero sugar. An unofficial cinematic tribute to the black can.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#taste">Taste</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#moments">Moments</a>
+        <a href="#inside">Inside</a>
+        <a href="#find">Find Zero</a>
+      </nav>
+      <p class="footer__legal">© <span id="year"></span> Fan-made demo. Coca-Cola and Coca-Cola Zero Sugar are trademarks of The Coca-Cola Company. This site is not endorsed by or affiliated with The Coca-Cola Company.</p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

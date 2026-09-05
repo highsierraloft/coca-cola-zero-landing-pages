@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coca-Cola Zero Sugar | Taste the Feeling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .coco-red { background-color: #fe001a; }
+        .text-coco-red { color: #fe001a; }
+        .bg-coco-black { background-color: #000000; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/90 text-white py-4 px-6 flex justify-between items-center backdrop-blur-md">
+        <div class="text-2xl font-black tracking-tighter">Coca-Cola <span class="text-coco-red">Zero</span></div>
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#hero" class="hover:text-coco-red transition">Home</a>
+            <a href="#features" class="hover:text-coco-red transition">Features</a>
+            <a href="#experience" class="hover:text-coco-red transition">Experience</a>
+            <a href="#gallery" class="hover:text-coco-red transition">Gallery</a>
+            <a href="#footer" class="hover:text-coco-red transition">Contact</a>
+        </div>
+        <button class="coco-red text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition">Buy Now</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center justify-center text-white relative px-6 overflow-hidden">
+        <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <h1 class="text-6xl md:text-8xl font-black leading-tight mb-6">
+                    ZERO SUGAR.<br><span class="text-coco-red">MAX TASTE.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
+                    Experience the legendary taste of Coca-Cola with zero sugar. Bold, refreshing, and designed for those who refuse to compromise.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#experience" class="coco-red px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">Explore More</a>
+                    <button class="border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition">Watch Ad</button>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="w-64 h-96 bg-coco-red rounded-3xl rotate-12 absolute opacity-20 blur-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1622483767028-75f57557672c?auto=format&fit=crop&q=80&w=800" alt="Coca Cola Zero Can" class="w-72 md:w-96 z-10 float-animation rounded-2xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">Why Zero?</h2>
+                <div class="h-1 w-24 coco-red mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="p-8 rounded-3xl bg-gray-50 hover:shadow-xl transition group border-b-8 border-transparent hover:border-coco-red">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">🥤</div>
+                    <h3 class="text-2xl font-bold mb-4">Classic Taste</h3>
+                    <p class="text-gray-600">The same iconic flavor you love, crafted to perfection without the sugar.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-gray-50 hover:shadow-xl transition group border-b-8 border-transparent hover:border-coco-red">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">⚡</div>
+                    <h3 class="text-2xl font-bold mb-4">Zero Calories</h3>
+                    <p class="text-gray-600">All the refreshment, none of the guilt. Perfect for any time of the day.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-gray-50 hover:shadow-xl transition group border-b-8 border-transparent hover:border-coco-red">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform">❄️</div>
+                    <h3 class="text-2xl font-bold mb-4">Ice Cold</h3>
+                    <p class="text-gray-600">Best served chilled to unlock the full spectrum of refreshing bubbles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6 bg-coco-black text-white">
+        <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <img src="https://images.unsplash.com/photo-1554866585-55ef6f66f77d?auto=format&fit=crop&q=80&w=800" alt="Refreshing Drink" class="rounded-3xl shadow-2xl">
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">A Moment of <span class="text-coco-red">Pure Bliss</span></h2>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                    Whether you're powering through a workday, gaming with friends, or enjoying a meal, Coca-Cola Zero Sugar is the ultimate companion. It's not just a drink; it's a lifestyle choice for the bold.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3"><span class="text-coco-red">✓</span> No compromise on flavor</li>
+                    <li class="flex items-center gap-3"><span class="text-coco-red">✓</span> Sustainable packaging</li>
+                    <li class="flex items-center gap-3"><span class="text-coco-red">✓</span> Globally loved</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 px-6 bg-gray-100">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">The Visuals</h2>
+                <div class="h-1 w-24 coco-red mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://images.unsplash.com/photo-1581006852245-a07707337740?auto=format&fit=crop&q=80&w=400" alt="Gallery 1" class="rounded-xl h-64 w-full object-cover hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1622483767028-75f57557672c?auto=format&fit=crop&q=80&w=400" alt="Gallery 2" class="rounded-xl h-64 w-full object-cover hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1554866585-55ef6f66f77d?auto=format&fit=crop&q=80&w=400" alt="Gallery 3" class="rounded-xl h-64 w-full object-cover hover:opacity-80 transition cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1581006852245-a07707337740?auto=format&fit=crop&q=80&w=400" alt="Gallery 4" class="rounded-xl h-64 w-full object-cover hover:opacity-80 transition cursor-pointer">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer" class="bg-black text-white py-16 px-6">
+        <div class="container mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+                <div class="text-3xl font-black mb-6">Coca-Cola <span class="text-coco-red">Zero</span></div>
+                <p class="text-gray-500">Bringing you the best of refreshment since the beginning. Zero sugar, total taste.</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+                <ul class="space-y-4 text-gray-500">
+                    <li><a href="#hero" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#features" class="hover:text-white transition">Features</a></li>
+                    <li><a href="#experience" class="hover:text-white transition">Experience</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-6">Join the Club</h4>
+                <form class="flex flex-col gap-4">
+                    <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-800 p-3 rounded-lg focus:outline-none focus:border-coco-red transition">
+                    <button class="coco-red p-3 rounded-lg font-bold hover:bg-red-700 transition">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="container mx-auto mt-16 pt-8 border-t border-gray-900 text-center text-gray-600 text-sm">
+            &copy; 2026 Coca-Cola Zero Concept Page. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

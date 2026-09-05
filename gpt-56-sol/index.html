@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A bold, cinematic concept landing page for Coca-Cola Zero Sugar."
+    />
+    <meta name="theme-color" content="#070707" />
+    <title>Coca-Cola Zero Sugar — Turn Up the Zero</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="Coca-Cola Zero Sugar, back to top">
+        <span class="brand__script">Coca-Cola</span>
+        <span class="brand__zero">Zero Sugar</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label">Menu</span>
+        <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+
+      <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation" data-menu>
+        <a href="#experience">The taste</a>
+        <a href="#details">The ritual</a>
+        <a href="#moments">The moments</a>
+        <a class="site-nav__cta" href="#spotlight">Meet Zero <span aria-hidden="true">↘</span></a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__bubbles" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--light"><span>New state of refreshment</span></p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__title-line hero__title-line--small">Turn up</span>
+            <span class="hero__title-line hero__title-line--big">the Zero.</span>
+          </h1>
+          <p class="hero__intro">
+            Bold cola refreshment. Zero sugar. A dark, sparkling classic made for the moment.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--light" href="#experience">
+              Explore the experience <span aria-hidden="true">↓</span>
+            </a>
+            <a class="text-link text-link--light" href="#details">Make it ice-cold</a>
+          </div>
+        </div>
+
+        <div class="hero__type" aria-hidden="true">ZERO</div>
+
+        <div class="hero__product" data-hero-product>
+          <div class="hero__orbit" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <path id="orbit-path" d="M50,8a42,42 0 1,1 0,84a42,42 0 1,1 0,-84" />
+              </defs>
+              <text><textPath href="#orbit-path">ZERO SUGAR • BIG TASTE • </textPath></text>
+            </svg>
+          </div>
+          <img
+            class="hero__can"
+            src="./assets/coke-zero-can.svg"
+            alt="Black Coca-Cola Zero Sugar can with a red ribbon"
+            width="500"
+            height="1000"
+          />
+          <span class="hero__shadow" aria-hidden="true"></span>
+        </div>
+
+        <div class="hero__edge-copy" aria-hidden="true">Taste the now / 2026</div>
+        <a class="hero__scroll" href="#experience">
+          <span>Scroll to open</span>
+          <i aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <section class="manifesto section section--cream" id="experience" aria-labelledby="manifesto-title">
+        <div class="section__meta reveal">
+          <span>01</span>
+          <span>The Zero state</span>
+        </div>
+
+        <div class="manifesto__grid">
+          <h2 class="display-title reveal" id="manifesto-title">
+            All ritual.<br />
+            <span class="outline-text">Zero</span> hesitation.
+          </h2>
+
+          <div class="manifesto__copy reveal">
+            <p class="lede">
+              Deep black. Electric red. That unmistakable crack of a can opening.
+            </p>
+            <p>
+              Coca-Cola Zero Sugar brings the scene before the first sip—bold, crisp and ready
+              whenever the moment calls.
+            </p>
+            <a class="text-link" href="#spotlight">See the icon <span aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+
+        <div class="manifesto__ticker" aria-label="Zero sugar, maximum refreshment">
+          <div class="manifesto__ticker-track" aria-hidden="true">
+            <span>ZERO SUGAR</span><i></i><span>ICE COLD</span><i></i><span>FULL SCENE</span><i></i>
+            <span>ZERO SUGAR</span><i></i><span>ICE COLD</span><i></i><span>FULL SCENE</span><i></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="sequence section section--ink" id="details" aria-labelledby="sequence-title">
+        <div class="section__meta section__meta--light reveal">
+          <span>02</span>
+          <span>The ice-cold ritual</span>
+        </div>
+
+        <div class="sequence__heading reveal">
+          <p class="eyebrow eyebrow--red"><span>A little drama in every pour</span></p>
+          <h2 class="display-title display-title--light" id="sequence-title">Three beats.<br />One classic.</h2>
+        </div>
+
+        <ol class="sequence__list">
+          <li class="sequence-card reveal">
+            <span class="sequence-card__number">01</span>
+            <div class="sequence-card__visual sequence-card__visual--crack" aria-hidden="true">
+              <span class="tab-shape"></span>
+              <i></i><i></i><i></i>
+            </div>
+            <div class="sequence-card__copy">
+              <h3>The crack</h3>
+              <p>Pull the tab. Start the soundtrack.</p>
+            </div>
+          </li>
+          <li class="sequence-card reveal">
+            <span class="sequence-card__number">02</span>
+            <div class="sequence-card__visual sequence-card__visual--fizz" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="sequence-card__copy">
+              <h3>The fizz</h3>
+              <p>Watch the bubbles race to the top.</p>
+            </div>
+          </li>
+          <li class="sequence-card reveal">
+            <span class="sequence-card__number">03</span>
+            <div class="sequence-card__visual sequence-card__visual--pour" aria-hidden="true">
+              <span></span>
+            </div>
+            <div class="sequence-card__copy">
+              <h3>The pour</h3>
+              <p>Over ice. Right on cue.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="spotlight section" id="spotlight" aria-labelledby="spotlight-title">
+        <div class="spotlight__top">
+          <div class="section__meta section__meta--light reveal">
+            <span>03</span>
+            <span>Meet the icon</span>
+          </div>
+          <p class="spotlight__note reveal">Move your pointer across the stage</p>
+        </div>
+
+        <div class="spotlight__stage" data-product-stage>
+          <div class="spotlight__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p class="spotlight__backdrop" aria-hidden="true">ZERO</p>
+          <img
+            class="spotlight__can"
+            src="./assets/coke-zero-can.svg"
+            alt=""
+            width="500"
+            height="1000"
+          />
+          <span class="product-note product-note--one reveal">Zero sugar <i></i></span>
+          <span class="product-note product-note--two reveal">Iconic cola taste <i></i></span>
+          <span class="product-note product-note--three reveal">Best served ice-cold <i></i></span>
+        </div>
+
+        <div class="spotlight__copy reveal">
+          <p class="eyebrow eyebrow--light"><span>Coca-Cola Zero Sugar</span></p>
+          <h2 id="spotlight-title">A sharper kind of classic.</h2>
+          <p>Familiar by design. Unmistakable in black.</p>
+        </div>
+      </section>
+
+      <section class="moments section section--cream" id="moments" aria-labelledby="moments-title">
+        <div class="section__meta reveal">
+          <span>04</span>
+          <span>Pick your moment</span>
+        </div>
+
+        <div class="moments__heading reveal">
+          <h2 class="display-title" id="moments-title">Zero sugar.<br />Full scene.</h2>
+          <p>There is no wrong time to make the ordinary feel a little more electric.</p>
+        </div>
+
+        <div class="moments__grid" role="region" aria-label="Pick your moment cards" tabindex="0">
+          <article class="moment-card moment-card--night reveal">
+            <div class="moment-card__art" aria-hidden="true">
+              <span class="moon"></span><span class="city"></span><i></i><i></i><i></i>
+            </div>
+            <div class="moment-card__copy">
+              <span>01 / After dark</span>
+              <h3>Late-night mode</h3>
+              <p>Playlists, city lights and one more episode.</p>
+            </div>
+          </article>
+
+          <article class="moment-card moment-card--game reveal">
+            <div class="moment-card__art" aria-hidden="true">
+              <span class="ball"></span><span class="field-line"></span>
+            </div>
+            <div class="moment-card__copy">
+              <span>02 / Kick-off</span>
+              <h3>Game on</h3>
+              <p>Cold cans. Good company. No quiet moments.</p>
+            </div>
+          </article>
+
+          <article class="moment-card moment-card--lunch reveal">
+            <div class="moment-card__art" aria-hidden="true">
+              <span class="sun"></span><span class="table-line"></span><i></i><i></i>
+            </div>
+            <div class="moment-card__copy">
+              <span>03 / Midday</span>
+              <h3>Lunch, louder</h3>
+              <p>Turn an everyday break into the main event.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="ritual section section--ice" aria-labelledby="ritual-title">
+        <div class="ritual__visual reveal" aria-hidden="true">
+          <div class="ritual__glass">
+            <i></i><i></i><i></i><i></i><i></i>
+            <span></span>
+          </div>
+          <div class="ritual__beam"></div>
+          <span class="ritual__word">COLD</span>
+        </div>
+
+        <div class="ritual__copy reveal">
+          <div class="section__meta section__meta--light">
+            <span>05</span>
+            <span>Serve the moment</span>
+          </div>
+          <p class="eyebrow eyebrow--red"><span>The ice-cold ritual</span></p>
+          <h2 class="display-title display-title--light" id="ritual-title">Chill.<br />Crack.<br />Pour.<br />Enjoy.</h2>
+          <p>Start cold. Add plenty of ice. Pour slowly and let the fizz do the talking.</p>
+        </div>
+      </section>
+
+      <section class="finale section" aria-labelledby="finale-title">
+        <div class="finale__noise" aria-hidden="true"></div>
+        <p class="eyebrow reveal"><span>The choice is easy</span></p>
+        <h2 class="finale__title reveal" id="finale-title">
+          Ready for<br /><span>zero?</span>
+        </h2>
+        <p class="finale__copy reveal">Open the moment with Coca-Cola Zero Sugar.</p>
+        <a class="button button--dark reveal" href="#top">Back to the top <span aria-hidden="true">↑</span></a>
+        <span class="finale__disc finale__disc--one" aria-hidden="true"></span>
+        <span class="finale__disc finale__disc--two" aria-hidden="true"></span>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__brand">
+        <span class="brand__script">Coca-Cola</span>
+        <span class="brand__zero">Zero Sugar</span>
+      </div>
+      <p>Concept landing page for demonstration.</p>
+      <p>© <span data-year>2026</span> Coca-Cola Zero Sugar</p>
+    </footer>
+  </body>
+</html>

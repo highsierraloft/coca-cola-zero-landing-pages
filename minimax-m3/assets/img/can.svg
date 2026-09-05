@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 480" role="img" aria-label="Coca-Cola Zero bottle">
+  <defs>
+    <linearGradient id="bottleBody" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2b2b2b"/>
+      <stop offset="35%" stop-color="#0a0a0a"/>
+      <stop offset="60%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="capGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#cfcfcf"/>
+      <stop offset="50%" stop-color="#f5f5f5"/>
+      <stop offset="100%" stop-color="#9a9a9a"/>
+    </linearGradient>
+    <linearGradient id="labelGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="50%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.25" cy="0.3" r="0.6">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path d="M70 20 Q100 0 130 20 L130 60 Q150 70 150 100 L150 430 Q150 460 100 470 Q50 460 50 430 L50 100 Q50 70 70 60 Z" fill="url(#bottleBody)" stroke="#000" stroke-width="2"/>
+  <rect x="68" y="10" width="64" height="35" rx="4" fill="url(#capGrad)" stroke="#222" stroke-width="2"/>
+  <path d="M70 20 Q100 0 130 20" fill="none" stroke="#666" stroke-width="1.5"/>
+  <rect x="55" y="160" width="90" height="200" rx="6" fill="url(#labelGrad)" stroke="#000" stroke-width="2"/>
+  <text x="100" y="220" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="900" font-size="30" fill="#E61A27" font-style="italic">Coca</text>
+  <text x="100" y="252" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="900" font-size="30" fill="#ffffff" font-style="italic">Cola</text>
+  <text x="100" y="310" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="40" fill="#ffffff" letter-spacing="2">ZERO</text>
+  <rect x="70" y="330" width="60" height="2" fill="#E61A27"/>
+  <ellipse cx="80" cy="200" rx="22" ry="70" fill="url(#shine)"/>
+</svg>
